@@ -20,6 +20,7 @@ theme:
         name: Switch to dark mode
   features:
     - navigation.tabs
+    - content.code.annotate
 
 
 nav:
@@ -40,5 +41,10 @@ nav:
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+
 
 
