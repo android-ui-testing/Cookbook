@@ -3,7 +3,7 @@ repo_url: https://github.com/android-ui-testing/Cookbook
 repo_name: Cookbook
 edit_uri: tree/develop/docs/content
 docs_dir: 'content'
-remote_branch: main
+remote_branch: gh-pages
 
 theme:
   name: 'material'
