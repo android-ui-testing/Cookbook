@@ -136,12 +136,14 @@ logic to host machine.
 //TODO Test report sample
 
 !!! success
+     
 
+    Clear package data is more reliable, consider to use it instead of within process clearing.
+    
     Marathon and Avito-Runner provide the easiest way to clear application data.
 
     1. You can set it just by one flag
-    2. They don't use orchestrator under the hood 
-    <br/>Devices are less reliable than host pc
+    2. They don't use orchestrator under the hood
 
 
 
