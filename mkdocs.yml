@@ -1,0 +1,43 @@
+site_name: Proper Android UI Testing
+remote_branch: main
+
+theme:
+  name: 'material'
+  palette:
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+
+
+nav:
+  - Home:
+      - home/index.md
+  - Basics:
+      - Testing theory: basics/testing_theory.md
+      - Instrumented testing: basics/instrumented_testing_basics.md
+  - Practices:
+      - Application state: practices/state_clearing.md
+      - Test runners: practices/test_runners_review.md
+      - Network: practices/network.md
+      - Emulator vs real device: practices/emulator_vs_real_device.md
+      - Flakiness: practices/flakiness.md
+      - Shared test components: practices/shared_test_components.md
+      - Page object: practices/page_object.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+
+
+include_search_page: false
+search_index_only: true
+
+language: en
