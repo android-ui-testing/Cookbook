@@ -1,4 +1,4 @@
-# Clearing state
+# State clearing
 
 This question appears as soon as you need to run more than 1 ui test.
 
