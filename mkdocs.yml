@@ -31,7 +31,7 @@ nav:
       - Testing theory: basics/testing_theory.md
       - Instrumented testing: basics/instrumented_testing_basics.md
   - Practices:
-      - Application state: practices/state_clearing.md
+      - State clearing: practices/state_clearing.md
       - Test runners: practices/test_runners_review.md
       - Network: practices/network.md
       - Emulator vs real device: practices/emulator_vs_real_device.md
