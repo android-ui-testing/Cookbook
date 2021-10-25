@@ -1,23 +1,19 @@
 site_name: Proper Android UI Testing
-repo_url: https://github.com/android-ui-testing/Cookbook
-repo_name: Cookbook
-edit_uri: tree/develop/docs/content
-docs_dir: 'docs/content'
 remote_branch: gh-pages
-language: en
 
 theme:
   name: 'material'
   palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
     - scheme: slate
       primary: black
       toggle:
-        icon: material/weather-sunny
+        icon: material/toggle-switch
         name: Switch to light mode
-    - scheme: default
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
+
   features:
     - navigation.tabs
     - content.code.annotate
@@ -30,7 +26,7 @@ nav:
       - Testing theory: basics/testing_theory.md
       - Instrumented testing: basics/instrumented_testing_basics.md
   - Practices:
-      - State clearing: practices/state_clearing.md
+      - Application state: practices/state_clearing.md
       - Test runners: practices/test_runners_review.md
       - Network: practices/network.md
       - Emulator vs real device: practices/emulator_vs_real_device.md
@@ -47,4 +43,7 @@ markdown_extensions:
   - pymdownx.snippets
 
 
+include_search_page: false
+search_index_only: true
 
+language: en

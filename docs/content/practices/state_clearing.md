@@ -4,7 +4,7 @@ This question appears as soon as you need to run more than 1 ui test.
 
 ## Problem:
 
-We run `Test1`, it executes some http calls, saves some data to files and database.
+We run `Test1`, it performs some http requests, saves some data to files and database.
 <br/>When `Test1` finished, `Test2` will be launched.
 <br/>However, `Test1` left some data on the device which can be a reason of `Test2` failing.
 
@@ -79,7 +79,7 @@ Idea — simulate the same behavior when user press `clear data` in application 
 
 ##### 2.1 Orchestrator
 
-Basically is it possible to have cleared state, if you are executing your tests like this:
+Basically is it possible to have cleared state, if you would execute your tests like this:
 
 ```bash
 adb shell am instrument -c TestClass#method1 -w com.package.name/junitRunnerClass
@@ -95,7 +95,7 @@ That's the common idea of `Orchestrator`.
 <br/>
 It's just an `apk` which consist of
 only [several classes](https://github.com/android/android-test/tree/master/runner/android_test_orchestrator/java/androidx/test/orchestrator)
-and which does test running and clearing for us as it's described above.
+and which does test run and clear for us as the same way as described above.
 
 Besides `application.apk` and `instrumented.apk`, orchestrator should be installed on the device.
 
@@ -105,9 +105,7 @@ Orchestrator should somehow execute adb commands. Under the hood, it
 uses [special services](https://github.com/android/android-test/tree/master/services)
 It's just shell client which is also represented as an `apk` and should be installed to the device.
 
-Full picture:
-
-//TODO
+![alt text](../images/orchestrator.png "orchestrator and test-services")
 
 [An official documentation and guide how to start with Orchestrator](https://developer.android.com/training/testing/junit-runner#using-android-test-orchestrator)
 
@@ -126,24 +124,28 @@ of [3rd party test runners](https://android-ui-testing.github.io/Cookbook/practi
 Marathon, Avito-Runner or Flank. Marathon and Avito-Runner clear package data without orchestrator. They delegated this
 logic to host machine.
 
-##### 1.3 Conclusion<br/>
+##### 2.3 Conclusion<br/>
 
 ➕ Does the job for us in 100% <br/>
 <br/>
 ➖ Slow execution _(can take 10+ seconds and depends on apk size)_ <br/>
 ➖ Orchestrator — over-complicated <br/>
 
-//TODO Test report sample
+
+Each `adb pm clear` takes some time and depends on apk size. 
+Below you may see some gaps between the tests which represents such delay
+
+
+![alt text](../images/package_clear.png "ADB package clearing takes some time")
 
 !!! success
-     
 
-    Clear package data is more reliable, consider to use it instead of within process clearing.
-    
+    Only package clear does a guarantee for you that data has been cleared.
     Marathon and Avito-Runner provide the easiest way to clear application data.
 
-    1. You can set it just by one flag
-    2. They don't use orchestrator under the hood
+    1. You can set it just by one flag in configuration
+    2. They don't use orchestrator under the hood 
+
 
 
 
