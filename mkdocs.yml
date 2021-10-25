@@ -1,5 +1,10 @@
 site_name: Proper Android UI Testing
+repo_url: https://github.com/android-ui-testing/Cookbook
+repo_name: Cookbook
+edit_uri: tree/main/docs/content
+docs_dir: 'docs/content'
 remote_branch: gh-pages
+language: en
 
 theme:
   name: 'material'
@@ -43,7 +48,4 @@ markdown_extensions:
   - pymdownx.snippets
 
 
-include_search_page: false
-search_index_only: true
 
-language: en
