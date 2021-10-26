@@ -23,8 +23,8 @@ fun setUp() {
 }
 ```
 
-The same component which does clearing data _(For instance, while logout)_. It's should honesty clear everything in
-application: Databases, Files, Preferences and Runtime cache and should be called before each test.
+The same component which clears data _(For instance, while logout)_. It should honestly clear everything in application:
+Databases, Files, Preferences and Runtime cache and should be executed before each test.
 !!! danger
 
     This solution is a bottleneck and it's better to avoid it at all. If LogoutCleaner broken, all of the tests will be failed
@@ -36,7 +36,7 @@ application: Databases, Files, Preferences and Runtime cache and should be calle
 All cache in android application stored in internal storage: `/data/data/packagename/`
 <br/>This storage — our application sandbox and can be achieved without any permission.
 
-Common idea: avoid usage of components from real code base and use some test rules, which do the job for us.
+Common idea: to avoid usage of components from real code base and use some test rules, which do the job for us.
 
 ```kotlin
 
@@ -59,7 +59,7 @@ them [here](https://github.com/AdevintaSpain/Barista/tree/master/library/src/mai
     This solution won't work on 100% for you:
 
     1. You may have runtime cache, which is also can affect your tests
-    2. Test or application process can be crashed, which prevents launching of the next tests
+    2. Test or application process can be crashed. It prevents launch of the next tests
 
 ##### 1.3 Conclusion<br/>
 
@@ -79,7 +79,7 @@ Idea — simulate the same behavior when user press `clear data` in application 
 
 ##### 2.1 Orchestrator
 
-Basically is it possible to have cleared state, if you would execute your tests like this:
+Basically it is possible to have cleared state, if you would execute your tests like this:
 
 ```bash
 adb shell am instrument -c TestClass#method1 -w com.package.name/junitRunnerClass
@@ -121,8 +121,8 @@ It's just shell client which is also represented as an `apk` and should be insta
 
 This is also possible to implement by usage
 of [3rd party test runners](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/), like
-Marathon, Avito-Runner or Flank. Marathon and Avito-Runner clear package data without orchestrator. They delegated this
-logic to host machine.
+Marathon, Avito-Runner or Flank. Marathon and Avito-Runner clear package data without an orchestrator. They delegated
+this logic to host machine.
 
 ##### 2.3 Conclusion<br/>
 
@@ -131,16 +131,14 @@ logic to host machine.
 ➖ Slow execution _(can take 10+ seconds and depends on apk size)_ <br/>
 ➖ Orchestrator — over-complicated <br/>
 
-
-Each `adb pm clear` takes some time and depends on apk size. 
-Below you may see some gaps between the tests which represents such delay
-
+Each `adb pm clear` takes some time and depends on apk size. Below you may see some gaps between the tests which
+represents such delay
 
 ![alt text](../images/package_clear.png "ADB package clearing takes some time")
 
 !!! success
 
-    Only package clear does a guarantee for you that data has been cleared.
+    Only package clear does guarantee for you that data has been cleared.
     Marathon and Avito-Runner provide the easiest way to clear application data.
 
     1. You can set it just by one flag in configuration
