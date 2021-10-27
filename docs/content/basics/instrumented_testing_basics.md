@@ -4,7 +4,7 @@ Instrumented tests are usual junit tests, but with one peculiarity:
 <br>
 They can be launched on Android device only.
 
-Using them, you may check how your application communicates with an Android OS.
+Using them, you may check how your application communicates with Android OS.
 
 However, they are written and executed much slower.
 
@@ -31,7 +31,7 @@ In `androidSrc` we have a real knowledge about `Android SDK`
 
 ## 2. How tests run under the hood
 
-![alt text](../images/basics/green_arrow.png "orchestrator and test-services")
+![alt text](../images/basics/green_arrow.png "Run instrumented tests")
 
 To be able to run your tests on `CI` and make it a part of `CD`, it's really important to understand how it works under
 the hood.
@@ -46,7 +46,7 @@ To test our application, we need to build it. We can do that with gradle:
 ```
 
 However, it's not enough for us. Remember? We also need to take care of the code we write in `androidTestSrc`. It also
-should be built. If may confuse you a bit, but it will be built in a separate apk.
+should be built and will be represented as an apk:
 
 ```bash
 # It will build an apk file located in app/build/outputs/debug/debug.apk
@@ -67,17 +67,6 @@ adb install debug.apk
 adb install instrumented.apk
 ```
 
-Or, if you have more than 1 device connected to adb:
-
-```shell
-devices=$(adb devices -l | sed '1d' | sed '$d' |
-
-for device in $devices; do
-  adb -s "$d" install debug.apk
-  adb -s "$d" install instrumented.apk
-done  
-```
-
 ##### 2.3 Run
 
 For running instrumented tests, `AndroidJunitRunner` is responsible
@@ -89,21 +78,21 @@ All you need to do it's to execute `adb` command:
 ```shell
 adb shell am instrument -w -m -e debug false \
  -e class 'com.alexbykov.myapplication.ExampleInstrumentedTest#myTest' \
-  com.alexbykov.myapplication.test/androidx.test.runner.AndroidJUnitRunner
+com.alexbykov.myapplication.test/androidx.test.runner.AndroidJUnitRunner
 ```
 
 We need to provide some information about tests needed to be launched: particular class, class with method or package.
 
 After execution, you may find junit report in `app/build/test-results/`
 
-![alt text](../images/basics/junit_runner.png "orchestrator and test-services")
+![alt text](../images/basics/junit_runner.png "Junit runner")
 
-It's also possible to define your own instrumented arguments and get them via code
-
-```shell
-//TODO
-```
+It's also possible to define your own instrumented arguments and get them in tests:
 
 ```kotlin
-//TODO
+//add -e myKey "test" to adb command 
+InstrumentationRegistry.getArguments().getString("myKey", "value")
 ```
+
+[Official documentation](https://developer.android.com/training/testing/junit-runner#using-android-test-orchestrator)
+
