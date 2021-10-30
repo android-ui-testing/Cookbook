@@ -73,7 +73,8 @@ do the whole job for you.
 ➕ Screenshots & Video from the box <br>
 ➕ Improved test report with video & logs <br>
 ➕ Possibility to connect devices on fly <br>
-➕ [Allure](https://github.com/allure-framework) support from the box <br>
+➕ Sync/Pull files from the device after test run <br>
+➕ Basic [Allure](https://github.com/allure-framework) support from the box <br>
 ➕ `adb` replacement: [Adam](https://github.com/Malinskiy/adam) <br>
 ➕ Cross-platform (iOS support) <br>
 
