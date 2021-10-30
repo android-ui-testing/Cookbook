@@ -62,45 +62,55 @@ All of them used `AndroidJunitRunner` under the hood, as it's the only possibili
 
 #### [:green_square: 2.1 Marathon](https://github.com/MarathonLabs/marathon)
 
-Powerful and the most pragmatic test runner.
+Powerful and the most pragmatic test runner. All you need to do it's just to connect devices to `adb`, and Marathon will
+do the whole job for you.
 
-Vision: Connect adb
+➕ CLI, Gradle Plugin <br>
+➕ Easy data clearing _(without an Orchestrator)_ <br>
+➕ Flexible configuration with filters <br>
+➕ Flakiness strategies <br>
+➕ Smart retries with a quota <br>
+➕ Screenshots & Video from the box <br>
+➕ Improved test report with video & logs <br>
+➕ Possibility to connect devices on fly <br>
+➕ [Allure](https://github.com/allure-framework) support from the box <br>
+➕ `adb` replacement: [Adam](https://github.com/Malinskiy/adam) <br>
+➕ Cross-platform (iOS support) <br>
 
-*Features:*
-
-* CLI, Gradle Plugin
-* Easy data clearing
-* Flexible configuration with filters
-* Flakiness strategies
-* Smart retries with quota
-* Screenshots & Video from the box
-* Improved test report with video & logs
-* Possibility to connect devices on fly
-* [Allure](https://github.com/allure-framework) support from the box
-* `adb` replacement: [ADAM](https://github.com/Malinskiy/adam)
-* Cross-platform (iOS support)
+➖ Doesn't support auto-scaling <br>
+_(But from the other perspective, it's not a test runner responsibility)_
 
 [Documentation](https://marathonlabs.github.io/marathon/)
 
 #### [:green_square: 2.2 Avito Test Runner](https://github.com/avito-tech/avito-android/tree/develop/subprojects/test-runner)
 
-PoweKubernetes
+Powerful test runner. Works directly with `Kubernetes`
 
-* Easy data clearing
-* Device auto-connection on fly
+➕ Easy data clearing _(without an Orchestrator)_ <br>
+➕ Auto-scaling on fly _(There is a coroutine in the background which tries to connect more devices)_
+➕ Retries
+
+➖ Complicated adoption <br>
+
+This test runner has been using by Avito company for 4+ years and runs thousands tests every day. It's not as powerful
+as Marathon, however it doesn't have an analogue in terms of auto scaling from the box.<br>
+If you want to run your UI tests on pull requests in a large teams, this test runner is one of the best option.
+
+Engineers from Avito are ready to help with adoption. You can contact to [Dmitriy Voronin](https://github.com/dsvoronin)
+
+[Documentation](https://avito-tech.github.io/avito-android/test_runner/TestRunner/)
 
 #### [:green_square: 2.3 Fork](https://github.com/shazam/fork)
 
+//To be done
+
 #### [:green_square: 2.4 Flank](https://github.com/Flank/flank)
 
-Test runner which makes your experience with [Firebase Test Lab](https://firebase.google.com/products/test-lab)
-easier. In that case, you don't need to take care about infrastructure at all.
-
-However, you need to pay
+//To be done
 
 #### [:green_square: 2.5 Flade](https://github.com/runningcode/fladle)
 
-Gradle plugin for Flank
+//To be done
 
 #### [:red_square: 2.6 Spoon](https://github.com/square/spoon)
 
@@ -109,7 +119,5 @@ Deprecated and not maintained anymore. Do not use it
 #### [:red_square: 2.7 Composer](https://github.com/gojuno/composer)
 
 Deprecated and not maintained anymore. Do not use it
-
-
 
 
