@@ -62,27 +62,53 @@ All of them used `AndroidJunitRunner` under the hood, as it's the only possibili
 
 #### [:green_square: 2.1 Marathon](https://github.com/MarathonLabs/marathon)
 
-//To be done
+Powerful and the most pragmatic test runner.
 
-#### [:green_square: 2.2 Avito Test Runner](https://github.com/avito-tech/avito-android)
+Vision: Connect adb
 
-//To be done
+*Features:*
+
+* CLI, Gradle Plugin
+* Easy data clearing
+* Flexible configuration with filters
+* Flakiness strategies
+* Smart retries with quota
+* Screenshots & Video from the box
+* Improved test report with video & logs
+* Possibility to connect devices on fly
+* [Allure](https://github.com/allure-framework) support from the box
+* `adb` replacement: [ADAM](https://github.com/Malinskiy/adam)
+* Cross-platform (iOS support)
+
+[Documentation](https://marathonlabs.github.io/marathon/)
+
+#### [:green_square: 2.2 Avito Test Runner](https://github.com/avito-tech/avito-android/tree/develop/subprojects/test-runner)
+
+PoweKubernetes
+
+* Easy data clearing
+* Device auto-connection on fly
 
 #### [:green_square: 2.3 Fork](https://github.com/shazam/fork)
 
-//To be done
-
 #### [:green_square: 2.4 Flank](https://github.com/Flank/flank)
 
-//To be done
+Test runner which makes your experience with [Firebase Test Lab](https://firebase.google.com/products/test-lab)
+easier. In that case, you don't need to take care about infrastructure at all.
 
-#### [:red_square: 2.5 Spoon](https://github.com/square/spoon)
+However, you need to pay
 
-Has been deprecated and not maintained anymore
+#### [:green_square: 2.5 Flade](https://github.com/runningcode/fladle)
 
-#### [:red_square: 2.6 Composer](https://github.com/gojuno/composer)
+Gradle plugin for Flank
 
-Has been deprecated and not maintained anymore
+#### [:red_square: 2.6 Spoon](https://github.com/square/spoon)
+
+Deprecated and not maintained anymore. Do not use it
+
+#### [:red_square: 2.7 Composer](https://github.com/gojuno/composer)
+
+Deprecated and not maintained anymore. Do not use it
 
 
 
