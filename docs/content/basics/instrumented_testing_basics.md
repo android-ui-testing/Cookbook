@@ -94,5 +94,14 @@ It's also possible to define your own instrumented arguments and get them in tes
 InstrumentationRegistry.getArguments().getString("myKey", "value")
 ```
 
+## 3. Tests location
+
 [Official documentation](https://developer.android.com/training/testing/junit-runner#using-android-test-orchestrator)
 
+## 3. Instrumented testing types
+
+* UI
+* Screenshot
+* Migration
+
+They are not a replacement of each other, they are complement to each other
