@@ -69,17 +69,27 @@ do the whole job for you.
 ➕ Easy data clearing _(without an Orchestrator)_ <br>
 ➕ Flexible configuration with filters <br>
 ➕ Flakiness strategies <br>
-➕ Smart retries with a quota <br>
-➕ Screenshots & Video from the box <br>
+➕ Dynamic test batching (test count/test duration) <br>
+➕ Smart retries with a quotas <br>
+➕ Screenshots & video out of the box <br>
 ➕ Improved test report with video & logs <br>
-➕ Possibility to connect devices on fly <br>
-➕ Sync/Pull files from the device after test run <br>
-➕ Basic [Allure](https://github.com/allure-framework) support from the box <br>
-➕ `adb` replacement: [Adam](https://github.com/Malinskiy/adam) <br>
+➕ Automatically rebalances test execution if connecting/disconnecting devices on fly <br>
+➕ Pull files from the device after test run, e.g. [allure-kotlin](https://github.com/allure-framework/allure-kotlin) <br>
+➕ Basic [Allure](https://github.com/allure-framework) support out of the box <br>
+➕ adb client `ddmlib` replacement: [Adam](https://github.com/Malinskiy/adam) <br>
 ➕ Cross-platform (iOS support) <br>
+➕ Fragmented test execution (similar to AOSP's sharding): split large testing suites into multiple CI builds <br>
+➕ Parallel execution of parameterised tests <br>
+➕ Interactions with adb/emulator from within a test (e.g. fake fingerprint or GPS) <br>
+➕ Code coverage support <br>
+➕ Testing multi-module projects in one test run <br>
+➕ Flakiness fixing mode to verify test passing probability improvements <br>
 
-➖ Doesn't support auto-scaling <br>
-_(But from the other perspective, it's not a test runner responsibility)_
+➖ Doesn't auto-scale devices <br>
+_(Marathon will utilise more devices in runtime if some other system connects more to the adb, but marathon itself will not spawn more emulators for you)_
+➖ HTML report doesn't contain test retry information (but the Allure report does) <br>
+➖ For complex test executions that solve test flakiness requires an installation of TSDB (InfluxDB or Graphite) <br>
+
 
 [Documentation](https://marathonlabs.github.io/marathon/)
 
@@ -120,5 +130,3 @@ Deprecated and not maintained anymore. Do not use it
 #### [:red_square: 2.7 Composer](https://github.com/gojuno/composer)
 
 Deprecated and not maintained anymore. Do not use it
-
-
