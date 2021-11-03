@@ -27,7 +27,10 @@ extra:
   analytics:
     provider: google
     property: UA-211238769-1
-
+    social:
+      - icon: fontawesome/brands/github
+        link: https://github.com/android-ui-testing/Cookbook
+        name: Repository
 
 nav:
   - Home:
@@ -54,9 +57,11 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.snippets
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-
-
-

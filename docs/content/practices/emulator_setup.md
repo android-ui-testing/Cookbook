@@ -164,3 +164,8 @@ docker rm $(docker ps -a -q)
   and fails on CI. It won't be possible to run Docker emulator on macOS or Windows, because
   of [haxm#51](https://github.com/intel/haxm/issues/51#issuecomment-389731675). Use AVD to launch them on such
   machines (script above may help you)_
+
+!!! warning
+
+    To run an emulator on CI with a docker, make sure that nested virtualisation supported and KVM installed.
+    You can check more details [here](https://developer.android.com/studio/run/emulator-acceleration#vm-linux)
