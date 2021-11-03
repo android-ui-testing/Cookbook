@@ -73,8 +73,9 @@ do the whole job for you.
 ➕ Smart retries with a quotas <br>
 ➕ Screenshots & video out of the box <br>
 ➕ Improved test report with video & logs <br>
-➕ Automatically rebalances test execution if connecting/disconnecting devices on fly <br>
-➕ Pull files from the device after test run, e.g. [allure-kotlin](https://github.com/allure-framework/allure-kotlin) <br>
+➕ Automatically rebalanced test execution if connecting/disconnecting devices on fly <br>
+➕ Pull files from the device after test run,
+e.g. [allure-kotlin](https://github.com/allure-framework/allure-kotlin) <br>
 ➕ Basic [Allure](https://github.com/allure-framework) support out of the box <br>
 ➕ adb client `ddmlib` replacement: [Adam](https://github.com/Malinskiy/adam) <br>
 ➕ Cross-platform (iOS support) <br>
@@ -86,10 +87,10 @@ do the whole job for you.
 ➕ Flakiness fixing mode to verify test passing probability improvements <br>
 
 ➖ Doesn't auto-scale devices <br>
-_(Marathon will utilise more devices in runtime if some other system connects more to the adb, but marathon itself will not spawn more emulators for you)_
+_(Marathon will utilise more devices in runtime if some other system connects more to the adb, but marathon itself will
+not spawn more emulators for you)_<br>
 ➖ HTML report doesn't contain test retry information (but the Allure report does) <br>
 ➖ For complex test executions that solve test flakiness requires an installation of TSDB (InfluxDB or Graphite) <br>
-
 
 [Documentation](https://marathonlabs.github.io/marathon/)
 
