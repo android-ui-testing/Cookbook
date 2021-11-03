@@ -154,7 +154,7 @@ docker rm $(docker ps -a -q)
 ## Conclusion
 
 * Use docker emulators </br>
-  _You also will have an opportunity to run them with `Kubernetes` in the future, to make it scalable in the future_
+  _You also will have an opportunity to run them with `Kubernetes`, to make it scalable in the future_
 
 * Start fresh emulators each test batch and kill them after all of your tests finished</br>
   _Emulators tend to leak and may not work properly after some time_
@@ -162,4 +162,5 @@ docker rm $(docker ps -a -q)
 * Use the same emulator as on CI locally</br>
   _All devices are different. It can save you a lot of time with debugging and understanding why your test works locally
   and fails on CI. It won't be possible to run Docker emulator on macOS or Windows, because
-  of [haxm#51](https://github.com/intel/haxm/issues/51#issuecomment-389731675). Use AVD to launch them on such machines_
+  of [haxm#51](https://github.com/intel/haxm/issues/51#issuecomment-389731675). Use AVD to launch them on such
+  machines (script above may help you)_
