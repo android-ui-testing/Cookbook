@@ -40,8 +40,9 @@ nav:
   - Practices:
       - State clearing: practices/state_clearing.md
       - Test runners: practices/test_runners_review.md
-      - Network: practices/network.md
       - Emulator vs real device: practices/emulator_vs_real_device.md
+      - Emulator setup: practices/emulator_setup.md
+      - Network: practices/network.md
       - Flakiness: practices/flakiness.md
       - Shared test components: practices/shared_test_components.md
       - Page object: practices/page_object.md
