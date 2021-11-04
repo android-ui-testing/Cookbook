@@ -81,7 +81,7 @@ Official documentation says that it's not a good way to handle this, because of 
 resources. However, it's a pragmatic trade-off which speed ui testing writing up and relieves engineers from thinking
 about this problem at all.
 
-Some frameworks already have intercepts such action for each assertion:
+Some frameworks have already implemented solution, which intercepts all assetions:
 
 * [Avito UI test framework](https://github.com/avito-tech/avito-android/tree/develop/subprojects/android-test/ui-testing-core/src/main/kotlin/com/avito/android)
 * [Kaspresso](https://github.com/KasperskyLab/Kaspresso)
@@ -91,7 +91,7 @@ Consider using them to avoid this problem at all.
 #### 2. Use isolated environment for each test </br>
 
 Package clear before each test will all your data in application and process itself. This will get rid of the likelihood
-affection old data to your tests. Marathon and Avito-Test runner provide the easiest way to clear the state.
+affection old data to your current test. Marathon and Avito-Test runner provide the easiest way to clear the state.
 </br>
 
 You can see the details here: [State Clearing](https://android-ui-testing.github.io/Cookbook/practices/state_clearing/)
