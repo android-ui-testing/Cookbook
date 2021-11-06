@@ -52,6 +52,8 @@ nav:
       - Page object: practices/page_object.md
 
 markdown_extensions:
+  - def_list
+  - attr_list
   - admonition
   - pymdownx.details
   - pymdownx.highlight
