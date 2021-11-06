@@ -8,6 +8,8 @@ language: en
 
 theme:
   name: 'material'
+  icon:
+    logo: fontawesome/brands/android
   palette:
     - scheme: default
       toggle:
