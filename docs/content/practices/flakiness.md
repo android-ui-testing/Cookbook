@@ -3,7 +3,7 @@
 Flakiness it's an unstable behavior of particular test. If you execute this test N times, it won't pass `N/N`. Or, it
 can pass only locally, but always or often failed on the CI.
 
-It's the most frustrating problem in instrumented testing, which consumes a lot of time from engineers to fight.
+It's the most frustrating problem in instrumented testing, which requires a lot of time from engineers to fight.
 
 ## Reason
 
@@ -18,15 +18,13 @@ It's the most frustrating problem in instrumented testing, which consumes a lot 
 
 {==
 
-It's not possible to fight flakiness on 100% if your codebase changes every day. The new sources of that can be merged
-every day.
+It's not possible to fight flakiness on 100% if your codebase changes every day (including the new sources of flakiness)
 
 However, it's possible to reduce it and achieve good percentage of flakiness free.
 
 ==}
 
-In general, you to reduce flakiness you need to choose your tools like framework for writing, test runner and emulator
-properly
+In general, to reduce flakiness you need to choose tools like framework for writing, test runner and emulator properly
 
 ## Flakiness protection
 
