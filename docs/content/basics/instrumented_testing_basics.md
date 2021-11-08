@@ -8,7 +8,7 @@ Using them, you may check how your application communicates with Android OS.
 
 However, they are written and executed much slower.
 
-## 1. Tests location
+## Tests location
 
 Unlike regular jvm tests, instrumented tests located in different src: `androidTest`
 <br>
@@ -29,7 +29,7 @@ Every `Android SDK` class instance used in `JVM` test will be stubbed.
 In `androidSrc` we have a real knowledge about `Android SDK`
 <br>
 
-## 2. How tests run under the hood
+## How tests run under the hood
 
 ![alt text](../images/basics/green_arrow.png "Run instrumented tests")
 
@@ -71,7 +71,7 @@ adb install instrumented.apk
 
 For running instrumented tests, `AndroidJunitRunner` is responsible
 
-As an input, you need to provide tests you want to run. As an output, `JunitReport.xml` will be provided
+As an input, you need to provide tests you want to run. As an output, tests result will be provided.
 
 All you need to do it's to execute `adb` command:
 
@@ -94,14 +94,12 @@ It's also possible to define your own instrumented arguments and get them in tes
 InstrumentationRegistry.getArguments().getString("myKey", "value")
 ```
 
-## 3. Tests location
-
 [Official documentation](https://developer.android.com/training/testing/junit-runner#using-android-test-orchestrator)
 
-## 3. Instrumented testing types
+## Instrumented testing types
 
-* UI
-* Screenshot
+* [UI](https://android-ui-testing.github.io/Cookbook/basics/ui_testing/)
+* [Screenshot or Snapshot](https://android-ui-testing.github.io/Cookbook/basics/screenshot_testing/)
 * Migration
 
 They are not a replacement of each other, they are complement to each other
