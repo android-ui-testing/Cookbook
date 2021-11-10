@@ -38,6 +38,7 @@ extra:
 nav:
   - Home:
       - home/index.md
+      - home/contribution.md
   - Basics:
       - Testing theory: basics/testing_theory.md
       - Instrumented testing: basics/instrumented_testing_basics.md
@@ -52,6 +53,9 @@ nav:
       - Flakiness: practices/flakiness.md
       - Shared test components: practices/shared_test_components.md
       - Page object: practices/page_object.md
+  - Adoption:
+      #- Where to begin: adoption/where_to_begin.md
+      - Companies experience: adoption/companies_experience.md
 
 markdown_extensions:
   - def_list
