@@ -10,7 +10,7 @@ This article will cover the most primitive things that will allow you to underst
 
 Let's focus on the topic of creating tests. To begin with, let's see the testing pyramid.
 
-<image here>
+![Testing pyramid](../images/pyramid.png "Testing pyramid")
 
 The width of each block is actually the ratio of the number of different types of tests to each other. 
 For example, a lot of Unit tests is usually considered correct in the pyramid, but much less UI tests. 
@@ -22,7 +22,7 @@ For example, a lot of Unit tests is usually considered correct in the pyramid, b
 
     <b>White-box testing</b> is a type of testing in which we have full access to the implementation and can interact with it. We know which output data will be with given input data.
     <br/><b>Black-box testing</b> is a type of testing in which we don't have access to the implementation and cannot interact with it, however, we know which output data should be with given input data.
-    <br/><b>Gray-box testing</b> is a rare type of testing when you have partial access to the implementation (for example, not to all entities that being tested). At the same time, we know what output data will be with given input data.
+    <br/><b>Gray-box testing</b> is a type of testing when you have partial access to the implementation (for example, not to all entities that being tested). At the same time, we know what output data will be with given input data.
 
 ## Unit tests
 These are tests that check the operation of specific entities (for example, a repository class or a ViewModel) and are directly related to the implementation, which gives us the opportunity to test on the principle of a white box.
@@ -30,11 +30,13 @@ These are tests that check the operation of specific entities (for example, a re
 
 ## Integration tests
 This type of tests is already a little less stable (than Unit tests), since we are going to test the interaction of 2 (or more) entities at once at the same time, but it still allows you to write in a White-box style. Now, having changed only one entity out of 2, there is a risk of failing integration tests.
+<br/>Integration tests are tests that checks how different components communicates with each other. That's why in that tests the most of the dependencies are not mocked and not even stubbed, they are real.
 <br/>It is by no means impossible to ignore these tests, since the Unit tests passed give us an understanding of what specific entities work, but how these entities work together we can only find out inside the application or using Integration testing.
 
 !!! Info
     
     Examples of Integration tests in Android include database testing.
+    Also UI tests are considered as integration, but with ability to check UI itself
 
 ## UI tests
 The type of tests for which this whole CookBook was created. This is the most unstable type of tests (if we look at our pyramid of tests). 
