@@ -20,6 +20,9 @@ help other people.
 `Network:` Mock, by Custom [OkReplay](https://github.com/airbnb/okreplay) <br>
 `Test report:` [Allure](http://allure.qatools.ru/)<br>
 
+: `Other:` We use custom `OkReplay` to achieve requests indexing, and the same request time as it was while recording.
+We're going to open-source this solution
+
 `Snapshot testing`
 
 :   `Tools:` [Screenshot tests for Android](https://github.com/facebook/screenshot-tests-for-android) <br>
