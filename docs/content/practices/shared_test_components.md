@@ -7,11 +7,10 @@ functionalities.
 
 ![alt text](../images/practices/design_system.svg "Sad")
 
-In UI testing we can use the same approach
-
 ## Problem
 
-Let's review a typical `PageObject` implementation, if you have a lot of custom views _(Including our own toolbar
+Design system introduction raises a lot of custom views usage. Let's review a typical `PageObject` implementation, if
+you have a lot of custom views _(Including our own toolbar
 `implementation` from the design system)_:
 
 ```kotlin
