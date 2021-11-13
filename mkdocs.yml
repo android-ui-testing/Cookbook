@@ -51,8 +51,8 @@ nav:
       - Emulator setup: practices/emulator_setup.md
       - Network: practices/network.md
       - Flakiness: practices/flakiness.md
-      - Shared test components: practices/shared_test_components.md
       - Page object: practices/page_object.md
+      - Shared test view components: practices/shared_test_components.md
   - Adoption:
       #- Where to begin: adoption/where_to_begin.md
       - Companies experience: adoption/companies_experience.md
