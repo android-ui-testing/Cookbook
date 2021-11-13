@@ -42,7 +42,6 @@ asynchronous operations.
 code and also requires an additional effort from engineers.</br>
 Recommended by community way it's to use smart-waiting (aka flaky safely algorithm) like this
 :
-
 ```kotlin
 fun <T> invokeFlakySafely(
         params: FlakySafetyParams,
@@ -83,10 +82,7 @@ about this problem at all.
 
 : Some frameworks have already implemented solution, which intercepts all assertions:
 
-:
-
-* [Avito UI test framework](https://github.com/avito-tech/avito-android/tree/develop/subprojects/android-test/ui-testing-core/src/main/kotlin/com/avito/android)
-
+: * [Avito UI test framework](https://github.com/avito-tech/avito-android/tree/develop/subprojects/android-test/ui-testing-core/src/main/kotlin/com/avito/android)
 * [Kaspresso](https://github.com/KasperskyLab/Kaspresso)
 
 : Consider using them to avoid this problem at all.
@@ -124,7 +120,6 @@ here: [Emulator setup](https://android-ui-testing.github.io/Cookbook/practices/e
 
 : Also, it's recommended way to disable animations on the device, screen-off timeout and long press timeout. The script
 below will patch all your devices connected to `adb`
-
 ```bash
   devices=$(adb devices -l | sed '1d' | sed '$d' |  awk '{print $1}')
   for d in $devices; do
@@ -162,7 +157,6 @@ here: [Network](https://android-ui-testing.github.io/Cookbook/practices/network/
 next tests will be failed because of this.
 <br>To prevent such case, you can write a test rule which will close such notification before each test
 :
-
 ```Kotlin
 class CloseNotificationsRule : ExternalResource() {
 
@@ -210,12 +204,10 @@ reason of `test1` failing.
 Sorting test by execution time based on a previous run will reduce the count of issues like this.
 
 #### 11. Use the same emulator configuration locally and on the CI </br>
-
 : Test can work fine in one device, however it can be failed on another device. Try to use an emulator with the same
 configuration as on CI locally.
 
 : You also can add some checks, which prohibit to run instrumented tests locally not on the same emulator as on CI.
-
 ```bash
   devices=$(adb devices -l | sed '1d' | sed '$d' |  awk '{print $1}')
   
@@ -245,7 +237,6 @@ tests locally as well
 : Always monitor flakiness percentage to reduce them and try to automate it. Marathon provides an information about
 retries it's done during the test run in a report meta-files in json format. Using them, you can create a Slack
 notification which posts some data with flakiness free:
-
 ```bash
 Flakiness report:
 Flakiness free: 95% (tests passed from 1st attempt)
@@ -260,8 +251,8 @@ ExistingChatTest#chat_ongoing_from_all_requests_screen_opened passed from 2 atte
 
 #### 14. Validate all tests for flakiness </br>
 
-: At night, when engineers sleep, you can trigger a CI job which runs all of your tests N times (like 10-30-100).
-Marathon provides the most convenient way to do that.
+: At night, when engineers sleep, you can trigger a CI job which runs all of your tests N times (like 10-30-100). Marathon
+provides the most convenient way to do that.
 
 : You can read more about it
 here: [Test runners](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/)
