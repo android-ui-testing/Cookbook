@@ -4,8 +4,8 @@ Looking to how other companies implemented `UI/Snapshot testing` may help you to
 and save your time.
 
 We would be really grateful if you
-could [contribute and share your experience](https://android-ui-testing.github.io/Cookbook/home/contribution) page to
-help other people.
+could [contribute and share your experience](https://android-ui-testing.github.io/Cookbook/home/contribution) directly
+to this page, to help other people.
 
 ## Revolut
 
