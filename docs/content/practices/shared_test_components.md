@@ -1,4 +1,4 @@
-# Shared test view components
+# Sharing ui components among tests
 
 As the application grows, sooner or later the question of using a design system and common components arises.
 <br> The design system forces us to think not with ready-made components provided by the `Android SDK`, but with our
