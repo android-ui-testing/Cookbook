@@ -1,5 +1,7 @@
 # Flakiness
 
+![alt text](../images/practices/header_flakiness.svg "Sad")
+
 Flakiness it's an unstable behavior of particular test. If you execute this test N times, it won't pass `N/N`. Or, it
 can pass only locally, but always or often failed on the CI.
 
