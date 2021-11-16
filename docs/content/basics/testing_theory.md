@@ -18,7 +18,8 @@ There are different means to classify tests. We will focus on the following
 ## Classifying tests by granularity
 To begin with, let's see the testing pyramid.
 
-![Testing pyramid](../images/pyramid.png "Testing pyramid")
+![Testing pyramid](../images/pyramidE2E.png "Testing pyramid")
+> Testing Pyramid (source Martin Fowler, triangle authorship Kent C. Dotts)
 
 1. **End-to-End tests (E2E)**: these tests verify that all components in every single layer of the application work together as expected. They allow to test User stories - how our users are going to use the application. This makes them incredibly important both for business and for an ordinary developer or tester.
    However, this is the most unstable type of test, and the cost of creating and maintaining them is high. That's because there are a lot of factors we cannot control (e.g. network failures, clean user state before and after the test, etc.).
@@ -50,10 +51,10 @@ Apart from their granularity, there are two interesting means to classify tests,
       1. Ui tests that run on the JVM and only test one view (i.e. unit test)
       2. Non-Ui tests that run on a device (i.e. instrumented) and test several components (i.e. integration test)
 
-## Classifying tests by the environment where they can run
-Depending on the environment the tests can run, we get the following distribution
+## Classifying tests by the environment where they can run on
+Depending on the environment the tests can run on, we get the following distribution
 
-1. **JVM (Java Virtual Machine) tests**: can run without the need of an emulator or physical device.
+1. **JVM (Java Virtual Machine) tests**: can run without the need of an emulator or physical device. These tests do not contain Android-specific code, although they might mock it under the hood.  
 
 2. **Instrumentation tests**: those that require an emulator or physical device. These are tests that
    contain Android-specific code, like Views. Such code requires a DVM (Dalvik Virtual Machine) or Android Runtime (ART) since 5.0 to be executed, and therefore it cannot run on the JVM but on a device.
@@ -68,27 +69,31 @@ Depending on the target of our tests, they are split into the following categori
 2. **Screenshot/Snapshot tests**:  focus on testing the HOW (visuals): *HOW a view is displayed* under a given state or configuration.
 3. **Non-UI tests**: focus on testing non-ui related code like *BUSINESS LOGIC* or *DATABASE MIGRATIONS* among others
 
-### Should I write Snapshot tests or Ui Tests?
-It might be confusing to understand when to write Ui test rather than Snapshot tests and vice versa. They do not replace each other. Their focus is different as previously mentioned. So let's imagine the following screen, which is a RecyclerView
+### Should I write Screenshot tests or Ui Tests?
+It might be confusing to understand when to write Ui test rather than Screenshot tests and vice versa. They do not replace each other. Their focus is different as previously mentioned. So let's imagine the following screen, which is a RecyclerView
 
-![gif300Faster.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1631992848600/ajg2fTGRG.gif)
+![language learning app](https://cdn.hashnode.com/res/hashnode/image/upload/v1631992848600/ajg2fTGRG.gif)
 
-A *Ui test would verify*, e.g. that after deleting a row in the recycler View, that row is not displayed anymore. It would test *WHAT is displayed after interacting with the view*.
+A *Ui test would verify*, e.g. that after deleting a row in the recycler View, that row is not displayed anymore. It would test *WHAT is displayed after interacting with the view*
 
 On the other hand, a *snapshot test would verify HOW that row is displayed* under numerous states and configurations: e.g. dark/light mode, LTR/RTL languages, different font sizes, wide/narrow screens...
+
+![snapshot testing example](../images/snapshotTesting.png "Snapshot testing example")
+> Up: Row when system font size set to huge </br>
+  Down: Row in dark mode
 
 You might think you could write a full screen snapshot test after deleting the row to verify it is not displayed anymore. Although it might work at the beginning, this approach comes with its own problems, the most relevant is that your **tests become brittle**.
 
 Let me explain that with an example.
-Imagine you change how the row is displayed. If you verify the snapshot test, it will fail. You need to record a new snapshot including those changes on the row. The issue here is that the focus of your test was to verify that the deleted row is not displayed anymore. What does it have to do with changing the appearance of the row?
+Imagine you change how the row is displayed. If you verify the snapshot test, it will fail. You need to record a new snapshot including those changes on the row. The issue here is that the focus of your test was to verify that the deleted row is not displayed anymore. What does it have to do with changing the appearance of the row? You guessed it. Nothing. But the test fails because of that.
 
-Therefore, *every subtle change on the screen will require to record a new snapshot, although that change had nothing to do with the initial scope of the test*.
+Therefore, *every subtle change on the screen will require to record a new snapshot, although that change had nothing to do with the initial intention of the test*.
 On the other hand, a Ui test would have not failed since we would be asserting whether the deleted row was displayed or not. No visuals involved.
 
 To sum it up: **use both Ui test and Snapshot tests**, they complement each other. Think which is the right tool for the task at hand.
 
 ### Shared tests
-Google made Espresso compatible with Robolectric through the androidx.test library.
+Google made Espresso compatible with Robolectric through the `androidx.test` library.
 This means, that we can write Espresso tests that will run on the JVM with Robolectric under the hood, if desired, as well as on a device or emulator.
 
 #### How it works
