@@ -70,9 +70,10 @@ Depending on the target of our tests, they are split into the following categori
 3. **Non-UI tests**: focus on testing non-ui related code like *BUSINESS LOGIC* or *DATABASE MIGRATIONS* among others
 
 ### Should I write Screenshot tests or Ui Tests?
-It might be confusing to understand when to write Ui test rather than Screenshot tests and vice versa. They do not replace each other. Their focus is different as previously mentioned. So let's imagine the following screen, which is a RecyclerView
+It might be confusing to understand when to write Ui test rather than Screenshot tests and vice versa. They do not replace each other. Their focus is different as previously mentioned.
+So let's imagine the following screen, which is a RecyclerView
 
-![language learning app](https://cdn.hashnode.com/res/hashnode/image/upload/v1631992848600/ajg2fTGRG.gif)
+![language learning app](../images/snapshotVsUiTests.gif "Snapshot testing example")
 
 A *Ui test would verify*, e.g. that after deleting a row in the recycler View, that row is not displayed anymore. It would test *WHAT is displayed after interacting with the view*
 
@@ -165,6 +166,6 @@ Keep in mind that such tests have the same limitations as Robolectric
 
 
 ## Conclusion
-* We got the basic concepts of testing, learned about the difference between Black/White/Gray-box testing.
-* In this article we got knowledge of main types of testing and examined the areas of their application.
-* UI tests are the most unstable, the longest and the most expensive in terms of support but they allow you to test entire User stories and can do it even on every merge.
+* We understood that we can classify tests by different criteria, and every test belongs to one group in every classification
+* E2E tests are the most unstable, the longest and the most expensive in terms of support but they allow you to test entire User stories and can do it even on every merge.
+* In this article we understood the differences between Screenshot tests and Ui tests and their areas of application.
