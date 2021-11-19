@@ -14,7 +14,7 @@ to this page, to help other people.
 :   
 `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
 `Who:` Android Engineers<br>
-`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) <br>
+`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) locally and on the CI <br>
 `Where:` [Headless emulators in Docker (Avito Image)](https://hub.docker.com/r/avitotech/android-emulator-29) <br>
 `How often:` Each 4h and before each release <br>
 `Network:` Mock, by Custom [OkReplay](https://github.com/airbnb/okreplay) <br>
@@ -33,3 +33,19 @@ for screens which implemented by using that components.
 
 
 
+## Kaspersky
+
+`UI testing`
+
+
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
+`Who:` QA and developers<br>
+`Runner:` AndroidJUnitRunner locally and on CI we use [Marathon](https://github.com/MarathonLabs/marathon) + custom tooling on top <br>
+`Where:` On CI: Emulators (we use custom Docker container) and real devices (custom integration with [STF](https://github.com/openstf/stf)) <br>
+`How often:` Each pull request (functional tests), before the release (e2e tests) and nightly (e2e tests) <br>
+`Test report:` On CI we use custom internal solution<br>
+
+`Snapshot testing`
+
+:   `Tools:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
+`How often:` Many times per new feature to check new strings and translations
