@@ -44,6 +44,7 @@ nav:
       - Instrumented testing: basics/instrumented_testing_basics.md
       - UI testing: basics/ui_testing.md
       - Screenshot testing: basics/screenshot_testing.md
+      - Ui testing or Screenshot testing?: basics/ui_tests_vs_snapshot_tests.md
   - Practices:
       - State clearing: practices/state_clearing.md
       - Test runners: practices/test_runners_review.md
