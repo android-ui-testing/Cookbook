@@ -4,56 +4,88 @@
 This article will cover the most primitive things that will allow you to understand better the terms and general concepts regarding testing.
 <br/>It is also worth noting that there will be an accent on UI tests, because we are in CookBook for UI tests.
 
-# Where it all starts
+
+## Where it all starts
 <i>Why do I need testing?</i> Users of your application/system/whatever should receive a quality product. 
 <br/>Thus, testing is about ensuring the quality of the product. Testing also includes creating a test plan, creating/conducting tests themselves and analyzing results of testing.
 
-Let's focus on the topic of creating tests. To begin with, let's see the testing pyramid.
+There are different means to classify tests. We will focus on the following
 
-![Testing pyramid](../images/pyramid.png "Testing pyramid")
+1. *Granularity*
+2. *Implementation details known*
+3. *Running environment*
+4. *Purpose*
+
+## Classifying tests by granularity
+To begin with, let's see the testing pyramid.
+
+![Testing pyramid](../images/pyramidE2E.png "Testing pyramid")
+> Testing Pyramid (source Martin Fowler, triangle authorship Kent C. Dotts)
+
+1. **End-to-End tests (E2E)**: these tests verify that all components in every single layer of the application work together as expected. They allow to test User stories - how our users are going to use the application. This makes them incredibly important both for business and for an ordinary developer or tester.
+   However, this is the most unstable type of test, and the cost of creating and maintaining them is high. That's because there are a lot of factors we cannot control (e.g. network failures, clean user state before and after the test, etc.).
+2. **Integration tests**: they focus on validating the interaction of 2 (or more) entities at once at the same time, but not the full system as with E2E tests. Most components involved are not mocks or stubs, but doubles or fakes.
+3. **Unit tests**: they only cover the smallest testable unit, usually a function, or view.
 
 The width of each block is actually the ratio of the number of different types of tests to each other. 
-For example, a lot of Unit tests is usually considered correct in the pyramid, but much less UI tests. 
+For example, a lot of Unit tests is usually considered correct in the pyramid, but much less E2E tests. 
 <br/><br/><b>This is due to two key parameters - stability and the cost of supporting each type of testing.</b>
-<br/>Unit tests have the highest stability, they are the fastest and they have the lowest cost of support, however, using Unit tests you won't be able to check the login flow of your application (which for example contains 5 screens).
-<br/><br/>We will reveal each type of testing in more detail, for this we will go from the bottom up.
+<br/>Unit tests have the highest stability, they are the fastest and they have the lowest cost of support. However, Unit tests do not intend to verify User stories e.g. the login flow of your application (which for example contains 5 screens).
+
+## Classifying tests by the implementation details known
+Testing can be classified regarding their access to the implementation details as follows:
+
+1. **White-box testing**: is a type of testing in which we have full access to the implementation and can interact with it. We know which output data will be with given input data.
+2. **Black-box testing**: is a type of testing in which we don't have access to the implementation and cannot interact with it, however, we know which output data should be with given input data.
+3. **Gray-box testing**: is a type of testing when you have partial access to the implementation (for example, not to all entities that being tested). At the same time, we know what output data will be with given input data.
+
+Most of the instrumentation test frameworks like Espresso and UiAutomator use Gray-box testing: They use view ids or text to interact with the Views.
+The Robot and Page Object pattern try to help with this by adding another abstraction layer that segregates the *WHAT* from the *HOW*. You can find more on that in the [Page Object](../practices/page_object.md) section
+</br>
+</br>
+</br>
+Apart from these 2 clusters, there are two other interesting means to classify tests, as pictured below
+
+![Group 5.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1637010289284/lS74gW9vvt.png)
 
 !!! Disclaimer
 
-    <b>White-box testing</b> is a type of testing in which we have full access to the implementation and can interact with it. We know which output data will be with given input data.
-    <br/><b>Black-box testing</b> is a type of testing in which we don't have access to the implementation and cannot interact with it, however, we know which output data should be with given input data.
-    <br/><b>Gray-box testing</b> is a type of testing when you have partial access to the implementation (for example, not to all entities that being tested). At the same time, we know what output data will be with given input data.
+      Important to note that these classifications are not mutually exclusive. One can write, for instance
 
-## Unit tests
-These are tests that check the operation of specific entities (for example, a repository class or a ViewModel) and are directly related to the implementation, which gives us the opportunity to test on the principle of a white box.
-<br/>They have high stability, because in order to break them, it is necessary to change the specific entity that they are testing.
+      1. Ui tests that run on the JVM and only test one view (i.e. unit test)
+      2. Non-Ui tests that run on a device (i.e. instrumented) and test several components (i.e. integration test)
 
-## Integration tests
-This type of tests is already a little less stable (than Unit tests), since we are going to test the interaction of 2 (or more) entities at once at the same time, but it still allows you to write in a White-box style. Now, having changed only one entity out of 2, there is a risk of failing integration tests.
-<br/>Integration tests are tests that checks how different components communicates with each other. That's why in that tests the most of the dependencies are not mocked and not even stubbed, they are real.
-<br/>It is by no means impossible to ignore these tests, since the Unit tests passed give us an understanding of what specific entities work, but how these entities work together we can only find out inside the application or using Integration testing.
+## Classifying tests by the environment where they can run on
+Depending on the environment the tests can run on, we get the following distribution
 
-!!! Info
-    
-    Examples of Integration tests in Android include database testing.
-    Also UI tests are considered as integration, but with ability to check UI itself
+1. **JVM (Java Virtual Machine) tests**: can run without the need of an emulator or physical device. These tests do not contain Android-specific code, although they might mock it under the hood.  
 
-## UI tests
-The type of tests for which this whole CookBook was created. This is the most unstable type of tests (if we look at our pyramid of tests). 
-<br/>The slightest change in the layout of one screen (for example, a simple replacement of the `id` of the `View`) can easily lead to the fall of all your tests, while your application remains fully functional. 
-<br/>UI tests usually follow a black-box scenario when there is no concept of entities and their implementations.
-<br/>However, it is worth noting that testing on the native framework (Espresso) allows you to access classes inside your tests that turning the tests into a Gray-box testing style.
-<br/>Despite such low stability, the high cost of creating and maintaining them - it is this type of tests that brings us closer to how your users are going to use the application - <b>UI tests allow you to test User story</b>. This feature makes these tests incredibly important both for business and for an ordinary developer or tester. 
-<br/>If desired, they can be run at least for each new merge inside your CI, it will not take as long time as a complete manual regression.
+2. **Instrumentation tests**: those that require an emulator or physical device. These are tests that
+   contain Android-specific code, like Views. Such code requires a DVM (Dalvik Virtual Machine) or Android Runtime (ART) since 5.0 to be executed, and therefore it cannot run on the JVM but on a device.
 
-## Manual tests
-It is also worth noting that there is also manual testing outside of this testing pyramid. 
-<br/>It is difficult to talk about the stability of this type of testing (because there is already a human factor here), but a manual testing does not care that the `id` of the `View` has changed in the program. 
-<br/>It is also equally important that UI tests may miss some little things such as extra padding (unless you also check it inside the UI test), possibly a different toolbar background color, etc.
-<br/>Hence manual testing has an important role and cannot be completely replaced by conventional types of testing. 
+3. **Shared tests**: These are tests that are written once, but can run either as JVM or as Instrumentation tests. The principle is simple: *Write once, run everywhere*.
+   These tests contain Android-specific code. Such code would need a device to run on. In order to enable that, when running on the JVM, that code is replaced by mocks under the hood.
+   
+## Classifying tests by their purpose
+Depending on the goal of our tests, they are split into the following categories
+
+1. **UI tests**: focus on testing the WHAT (interaction/navigation); *WHAT is displayed* when interacting with the screen elements.
+2. **Screenshot/Snapshot tests**:  focus on testing the HOW (visuals): *HOW a view is displayed* under a given state or configuration.
+3. **Non-UI tests**: focus on testing non-ui related code like *BUSINESS LOGIC* or *DATABASE MIGRATIONS* among others
+
+## Manual testing
+Although we've mainly focused on automated tests, it is also worth noting the importance of **manual testing** in the quality of an app.
+<br/>In manual testing se do not write automated tests, but rather steps we need to reproduce the User story or bug.
+This is especially needed for User stories that are very hard or impossible to completely automatize, or just not worth the effort. In this group are also very edge cases that would require extremely complex and large tests, if even possible. That is where manual testing comes in.
+<br/>Most E2E tests are performed manually. Automated E2E tests are the hardest to get stable, due to various components being involved, some of them out of our control (e.g. stable internet connectivity).
+<br/>Hence manual testing has an important role and cannot be completely replaced by conventional types of testing.
 <br/>But don't forget that this is essentially a question of the acceptable quality of a particular product.
 
 ## Conclusion
+* We understood that we can classify tests by different criteria, and every test belongs to one group in every classification
+* E2E tests are the most unstable, the longest and the most expensive in terms of support but they allow you to test entire User stories and can do it even on every merge.
 * We got the basic concepts of testing, learned about the difference between Black/White/Gray-box testing.
-* In this article we got knowledge of main types of testing and examined the areas of their application.
-* UI tests are the most unstable, the longest and the most expensive in terms of support but they allow you to test entire User stories and can do it even on every merge.
+* We are aware that, although Snapshot tests and UI tests verify the Ui, they serve different purposes.
+* We got that we can write Shared tests that can run on the JVM or on the device.
+* We understood that automated tests cannot completely replace manual testing.
+
