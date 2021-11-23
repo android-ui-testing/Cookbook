@@ -49,3 +49,28 @@ for screens which implemented by using that components.
 
 :   `Tools:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
 `How often:` Many times per new feature to check new strings and translations
+
+
+
+## Check24
+
+`UI testing`
+
+
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
+`Who write:` developers<br>
+`Runner:` AndroidJUnitRunner with Android Orchestrator <br>
+`Where:` On CI: real devices <br>
+`How often:` at noon and at night <br>
+`Test report:` Junit4 <br>
+`Amount of tests:` ≈ 30 <br>
+
+`Snapshot testing`
+
+:   `Tools:` [Shot](https://github.com/pedrovgs/Shot) <br>
+`Who write:` developers<br>
+`Runner:` TestButler + Composer for test sharding (Shot support out of the box) <br>
+`Where:` On CI: emulators <br>
+`How often:` On every PR <br>
+`Test report:` Shot report, which includes image diffs when tests fail <br>
+`Amount of tests:` ≈ 1200 <br>
