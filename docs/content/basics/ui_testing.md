@@ -12,7 +12,10 @@ Nowadays there is no doubt - for native UI testing on Android we should use Espr
 Why Espresso is so cool? It is synchronized with the main thread of your app and performs action only when main thread is in idle state.
 <br/>It makes Espresso extremely reliable and stable (than any other existing tool) for Ui testing on Android.
 
-But if you need to test several apps in your test - you should use UiAtomator.
+Keep in mind that everything that isn't related to your app (for example, permission dialogs, volume +/- buttons, home button and etc) - can't be accessed directly within Espresso.
+<br/>But don't worry - you can use `UiAutomator` for that purpose, and it can be called directly from test, written in Espresso.
+<br/>`UiAutomator` is a slower tool and can support tests only in black-box style, but it can test everything outside your application on your phone.
+<br/>Many cross-platforms tools for testing using `UiAutomator`.
 
 ### Where to start
 
@@ -32,13 +35,13 @@ After that, you can create your first test
 
 Let's start with the basic test.
 <br/>We have activity with one button (and no text shown), once we press it - text "Button pressed" shown.
-<image of app with ids>
+![alt text](../images/ui_testing/ui_testing_button.png "First state")![alt text](../images/ui_testing/ui_testing_button_clicked.png "Second state")
 1. We should specify which activity we should run.
 ```kotlin
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import org.junit.Rule
 ...
-     @get:Rule
+    @get:Rule
     var activityRule: ActivityScenarioRule<MainActivity>
             = ActivityScenarioRule(MainActivity::class.java)
 ```
@@ -49,6 +52,19 @@ import org.junit.Rule
         onView(withId(R.id.button))
     }
 ```
+
+!!! Disclaimer
+
+        Important addition - when you are trying to find some `View` that, for example, has same `id` like another View on that screen (that situation usually happens when you are trying to test screens with `RecyclerView`) you can add more `Matchers`
+        Simply place all `Matchers` that apply to single `View` on your screen inside of `allOf()` method
+        It will look like that
+        
+        <br/>@Test
+        <br/>fun someTest() {
+        <br/>&nbsp;&nbsp;&nbsp;onView(allOf(withId(R.id.button), withText("Click me")))
+        <br/>}
+        
+
 3. Then we should perform click on it (with `click()` method from `ViewInteraction`)
 ```kotlin
     @Test
@@ -67,9 +83,9 @@ import org.junit.Rule
     }
 ```
 Once we run it (run it as usual test, but you should connect real phone or run emulator), we will see standard test result
-<image with result>
+![alt text](../images/ui_testing/ui_testing_results.png "First state")
 
-Final code of our test
+**Final code of our test**
 ```kotlin
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
@@ -88,12 +104,16 @@ class ExampleInstrumentedTest {
     }
 }
 ```
-### Finding views
 
-### Interact with views
+### What else?
 
-### Your first test
+Espresso is quite powerful tool with a lot of abstractions inside it. 
+<br/>But there is a quite famous "cheat-sheet" for Espresso, I hope it will be helpful for everybody.
 
-### Handling edge cases
+![alt text](../images/ui_testing/ui_testing_cheat_sheet.jpeg "Cheat sheet")
 
-### Other tools
+From that cheat-sheet you can understand which methods you can use for finding the `Views`, which methods for interactions with Views and which methods for checking the data.
+
+### Something like conclusion
+
+To be honest, there is a lot of edge-cases once you are trying to write your own tests. That's one of the reasons why that CookBook was created, so we are suggesting to read next articles to understand how to overcome many of common problems that you will face in Ui testing.
