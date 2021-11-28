@@ -4,15 +4,16 @@ UI tests is a part of instrumentation tests. <br/>
 That's why everything from [Instrumented tests topic](https://android-ui-testing.github.io/Cookbook/basics/instrumented_testing_basics/) is applicable to UI testing.
 
 Ui testing goal is to check some scenarios of using your application.<br/>
-Usually, we do ui testing for some common users scenario: 
-* login to your application <br/>
-* process of ordering <br/>
-* creating new chat <br/>
-* and so on
+Usually, we do ui testing for some common users scenario:
 
-Simple Ui test can't catch the problem with wrong padding or wrong color of your view (only in cases where you specially check that) - because there is another type of tests used to catch such problems, called `Screenshot testing` - you can read [Screenshot testing article](https://android-ui-testing.github.io/Cookbook/basics/screenshot_testing/) to get familiar with that.<br/>
+* Login to your application
+* Process of ordering 
+* Creating new chat 
+* And so on
 
-So, if once we decided that we need to check users scenarios - we should definitely start writing Ui tests and let's start with tools, that will help us to write this type of test.
+Simple Ui test can't catch the problem with wrong padding or wrong color of your view (only in cases where you specially check that) - because there is another type of tests used to catch such problems called `Screenshot testing` - you can read [Screenshot testing article](https://android-ui-testing.github.io/Cookbook/basics/screenshot_testing/) to get familiar with that.<br/>
+
+So, if once we decided that we need to check users scenarios - we should definitely start writing Ui tests and let's start with tools, that will help us to write this type of tests.
 
 ## Main tool - Espresso and UiAutomator
 
@@ -52,6 +53,7 @@ You can read more about both frameworks at official documentation. [Espresso](ht
 
 Let's get familiar with Espresso.
 <br/>Basically to start writing Ui tests we should:
+
 * Find the `View` (using `ViewMatchers`)
 * Interact with that `View` (using `ViewInteraction`)
 * Check state of `View` (using `ViewAssertion`)
@@ -86,9 +88,8 @@ import org.junit.Rule
         <br/>fun someTest() {
         <br/>&nbsp;&nbsp;&nbsp;onView(allOf(withId(R.id.button), withText("Click me")))
         <br/>}
-        
 
-3. Then we should perform click on it (with `click()` method from `ViewInteraction`)
+3.Then we should perform click on it (with `click()` method from `ViewInteraction`)
 ```kotlin
     @Test
     fun pressButtonAndCheckText() {
