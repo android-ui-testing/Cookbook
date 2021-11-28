@@ -63,7 +63,6 @@ for screens which implemented by using that components.
 `Where:` On CI: real devices <br>
 `How often:` at noon and at night <br>
 `Test report:` Junit4 <br>
-`Amount of tests:` ≈ 30 <br>
 
 `Snapshot testing`
 
@@ -73,4 +72,3 @@ for screens which implemented by using that components.
 `Where:` On CI: emulators <br>
 `How often:` On every PR <br>
 `Test report:` Shot report, which includes image diffs when tests fail <br>
-`Amount of tests:` ≈ 1200 <br>
