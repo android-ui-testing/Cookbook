@@ -1,6 +1,6 @@
 # UI testing
 
-UI tests is a part of instrumentation tests. <br/>
+UI tests are a part of instrumentation tests. <br/>
 That's why everything from [Instrumented tests topic](https://android-ui-testing.github.io/Cookbook/basics/instrumented_testing_basics/) is applicable to UI testing.
 
 Ui testing goal is to check some scenarios of using your application.<br/>
