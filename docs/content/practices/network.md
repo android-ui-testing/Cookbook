@@ -2,7 +2,7 @@
 
 # Network
 
-UI testing can play a role of regular auto-testing in your project, which checks communication of your feature with other features on the device, you have to choose, how to deal with a network.
+UI testing can play a role of regular auto-testing in your project, which checks communication of your feature with other features on the device. In that case, you have to choose, how to deal with a network.
 
 ### Problems
 
