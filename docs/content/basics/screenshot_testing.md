@@ -74,7 +74,12 @@ We'll describe them in detail in their own section in the future.
 Unlike Ui tests, it is not possible to write shared tests
 
 ## Conclusion
---- Draft
+1. Although it has become very popular recently, screenshot testing has been possible on Android since 2015.
+2. Differs from Ui testing on its purpose: Screenshot testing focuses on the visuals, how the views are displayed under different configurations.
+3. Screenshot tests requires at least 2 tasks, record (locally) and verify (on the CI). The process also requires more steps than standard Ui testing.
+4. Flakiness is also an issue. Screenshot tests share some common troubles with Ui tests, but face many more problems additionally.
+5. There are numerous open source frameworks for instrumented screenshot testing, and even one for the JVM. However, no shared test are possible.
+
  
 
 
