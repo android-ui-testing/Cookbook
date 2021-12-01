@@ -4,7 +4,7 @@ So let's imagine the following screen, which is a RecyclerView
 ![language learning app](../images/snapshotVsUiTests.gif "Snapshot testing example")
 
 ## What to Ui test
-A *Ui test would verify*, e.g. that after deleting a row in the recycler View, that row is not displayed anymore. It would test *WHAT is displayed after interacting with the view*
+A *Ui test would verify*, e.g. that after deleting a row in the RecyclerView, that row is not displayed anymore. It would test *WHAT is displayed after interacting with the view*
 </br></br>
 Therefore, write a Ui test if:
 
@@ -31,15 +31,15 @@ Down: Row in dark mode
 ## Use the right tool for the job
 If you are new to Screenshot testing, don't fall into the trap of thinking that it can replace Ui testing. 
 
-You might be thinking that you could write a full screen snapshot test after deleting the row to verify it is not displayed anymore.
-If you had the test already written, you'd just need to change your view visibility assert with a snapshot assert.
-Keep in mind that this approach does not solve some common problems with Ui tests:
+For our test case, we wanted to verify that after deleting a row in the RecyclerView, that row is not displayed anymore.
+If you had the test already written, it'd be as simple as replacing your view visibility assert with a snapshot one at the end of the test.
+However, keep in mind that this approach does not solve some common problems with Ui testing:
 
 1. **Flakiness**: Screenshot tests also come with flakiness, and even its own issues e.g. mind dates if displaying any (more about this later). As with Ui tests, those problems can be mitigated though.
 
 2. **Speed**:
      - *Fake Snapshot tests*: Writing Screenshot tests that interact with views the same way as Ui tests, *do not make them any faster*. For that you need to write Screenshot tests that just inflate a view under a given state and snapshot it. This is what I call a *fake Screenshot test: a Ui test disguised with a snapshot assert*.
-     - *Less-scalable test sharding*: If you are thinking about using a cloud device service like Firebase test lab with test sharding to speed up the execution, it is not that simple. Snapshot file comparisons are done pixel by pixel.
+     - *Less-scalable test sharding*: If you are using a cloud device service like Firebase test lab with test sharding to speed up the execution, it is not that simple. Snapshot file comparisons are done pixel by pixel.
        This means, all tests must run on the same device models across all parts involved (devs and CI) to ensure that the resolution, screen size and api create screenshots with identical pixels. This restricts a lot the speed wins of test sharding usually gained with such services.
        </br></br>While all Ui tests can be distributed among all devices, snapshot tests can only use a portion: those devices with the same config that developers use to record the snapshots. This is depicted below
 
@@ -49,7 +49,7 @@ Keep in mind that this approach does not solve some common problems with Ui test
      *Test sharding* allows to evenly split up the test suite into all connected devices. This enables to parallelize your tests. So if you have 300 tests and 30 devices, 10 tests run on every device in parallel, resulting in considerably lower test execution times.
        
 
-Moreover, you will face the following issues:
+Additionally, you will face the following new issues:
 
 1. **If still no Snapshot tests in place & planning to run Snapshot tests on emulators**, dealing with them does not make things easier 
     1. ensuring every part involved (i.e. developers and CI) has the same emulator config: snapshot assertions happen pixel by pixel.
@@ -64,7 +64,8 @@ Moreover, you will face the following issues:
 2. **Tests become brittle**: they fail badly if altered in a seemingly minor way.
 
 Let me explain the last point with an example.
-Imagine you change how the row is displayed. If you verify the snapshot test, it will fail. You need to record a new snapshot including those changes on the row. The issue here is that the focus of your test was to verify that the deleted row is not displayed anymore. What does it have to do with changing the appearance of the row? You guessed it. Nothing. But the test fails because of that.
+Remember: we wanted to verify that after deleting a row in the RecyclerView, that row is not displayed anymore. We've written a Snapshot test for that.
+Now, Imagine you change how the row is displayed. If you verify the snapshot test, it will fail. You need to record a new snapshot including those changes on the row. The issue here is that the focus of your test was to verify that the deleted row is not displayed anymore. What does it have to do with changing the appearance of the row? You guessed it. Nothing. But the test fails because of that.
 
 You do not want your test to fail for the wrong reason. You want them to be meaningful. You want them to have a purpose
 
