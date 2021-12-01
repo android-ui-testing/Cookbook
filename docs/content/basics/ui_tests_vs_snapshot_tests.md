@@ -63,9 +63,11 @@ Additionally, you will face the following new issues:
 
 2. **Tests become brittle**: they fail badly if altered in a seemingly minor way.
 
-Let me explain the last point with an example.
-Remember: we wanted to verify that after deleting a row in the RecyclerView, that row is not displayed anymore. We've written a Snapshot test for that.
-Now, Imagine you change how the row is displayed. If you verify the snapshot test, it will fail. You need to record a new snapshot including those changes on the row. The issue here is that the focus of your test was to verify that the deleted row is not displayed anymore. What does it have to do with changing the appearance of the row? You guessed it. Nothing. But the test fails because of that.
+Let me explain the last point with an example. 
+
+> Remember: we wanted to verify that after deleting a row in the RecyclerView, that row is not displayed anymore. We've written a Snapshot test for that.
+
+Imagine you change how the row is displayed. If you verify the snapshot test, it will fail. You need to record a new snapshot including those changes on the row. The issue here is that the focus of your test was to verify that the deleted row is not displayed anymore. What does it have to do with changing the appearance of the row? You guessed it. Nothing. But the test fails because of that.
 
 You do not want your test to fail for the wrong reason. You want them to be meaningful. You want them to have a purpose
 
