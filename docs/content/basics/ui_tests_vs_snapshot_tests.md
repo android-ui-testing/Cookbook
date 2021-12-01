@@ -41,6 +41,9 @@ Keep in mind that this approach does not solve some common problems with Ui test
      - *Fake Snapshot tests*: Writing Screenshot tests that interact with views the same way as Ui tests, *do not make them any faster*. For that you need to write Screenshot tests that just inflate a view under a given state and snapshot it. This is what I call a *fake Screenshot test: a Ui test disguised with a snapshot assert*.
      - *Less-scalable test sharding*: If you are thinking about using a cloud device service like Firebase test lab with test sharding to speed up the execution, it is not that simple. Snapshot file comparisons are done pixel by pixel.
        This means, all tests must run on the same device models across all parts involved (devs and CI) to ensure that the resolution, screen size and api create screenshots with identical pixels. This restricts a lot the speed wins of test sharding usually gained with such services.
+       </br></br>While all Ui tests can be distributed among all devices, snapshot tests can only use a portion: those devices with the same config that developers use to record the snapshots. This is depicted below
+
+![test sharding](../images/test_sharding_scalation.png "Test sharding")
        
 !!! Disclaimer
      *Test sharding* allows to evenly split up the test suite into all connected devices. This enables to parallelize your tests. So if you have 300 tests and 30 devices, 10 tests run on every device in parallel, resulting in considerably lower test execution times.
