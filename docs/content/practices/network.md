@@ -60,7 +60,7 @@ Let's look, which options do we have
 **Problems**
 
 You need to mock manually. Imagine, that in your flow has hundreds of http requests.
-<br> You may spend a lot of time to have it done, and it's may be really challenging to keep these tests up-to-dated.
+<br> You may spend a lot of time mocking every single http response, and it's really challenging to keep these tests up-to-date.
 
 ### Mock network (automatically)
 
