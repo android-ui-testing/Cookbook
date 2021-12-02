@@ -1,8 +1,6 @@
 # Network
 
-# Network
-
-UI testing can play a role of regular auto-testing in your project, which checks communication of your feature with other features on the device. In that case, you have to choose, how to deal with a network.
+UI testing can play a role of regular auto-testing in your project. Your app communicates with external services to retrieve data e.g. user profile after login. This communication happens asynchronously, what hinders Ui Testing as explained below. In that case, you have to choose, how to deal with network connections.
 
 ### Problems
 
@@ -14,13 +12,13 @@ As we can see, all levels of the application are covered, the test is fully inte
 a product quality point of view. If the backend changed the contract, we will know about it right away.
 
 Unfortunately, this has a downside: everything about the network is unstable. The internet suddenly works a lot of worse or stop working altogether, or your backend may have redeployment step.
+If you make `GET` and `UPDATE` operations on the same data, the next time the test runs, the `GET` operation will run with the updated value, what might make the test fail, since when it was written it was expecting to `GET` the non-updated data.
 
 
 All of this can cause your test to fail and show a non-representative false result. On the other side,
-if you completely abandon the network, you cannot name it completely
-integration. Like everything in UI tests, networking is a trade-off.
+if you completely abandon the network, you cannot name it E2E test. Like everything in UI tests, networking is a trade-off.
 
-Unfortunately, here it will not be possible to find a 100% correct solution that will be simultaneously stable and test every layer in your app at the same time.
+Unfortunately, here it will not be possible to find a 10your0% correct solution that will be simultaneously stable and test every layer in your app at the same time.
 
 Let's look, which options do we have
 
@@ -33,12 +31,12 @@ Let's look, which options do we have
   <br>_We still have `E2E`, but the environment can be significantly different from production. Also, regular redeployment
   can be a problem_
 * **Special stage server**
-  <br>_Can be different with your production/development backend. Also pay your attention, that it requires an
-  additional effort from engineers to support it. It also is not 100% end to end, as it tests not real backend side._
+  <br>_Can be different with your production/development backend. Also pay your, that it requires an
+  additional effort from engineers to support it. It also is not E2e, as it tests not a real backend side._
   
 ???+ warning
-    It doesn't matter which of the options above you choose: Internet connection always can be an issue. 
-    <br>If you use UI testing as a part of pull request or release pipeline, it's better to avoid real network usage there, but just run them regular several times a day 
+    It doesn't matter which of the options above you choose: Internet connection always can be an issue, because you cannot guarantee stability at any time.
+    <br>If you use UI testing as a part of pull request or release pipeline, it's better to avoid real network usage there, but just run them regularly several times a day 
 
 ### Mock network (manually)
 
@@ -55,7 +53,7 @@ Let's look, which options do we have
 * **DI**
   <br> _Each DI framework ([Dagger2](https://github.com/google/dagger) / [Toothpick](https://github.com/stephanenicolas/toothpick) / [Koin](https://github.com/InsertKoinIO/koin) / etc) allows you to replace dependencies in tests.
   <br> We can replace the `Retroift Service` or the whole` Repository` entirely. However, we actually crop
-  testing the entire network layer and offline mod if it exists_
+  testing the entire network layer and offline mode if it exists_
 
 **Problems**
 
@@ -72,10 +70,12 @@ The key idea is that two modes of network operation appear in the tests:`Record 
 
 * **Replay**
   <br>_Instead of a real network, an already recorded file is used. This mode is used both locally and on CI. It allows to fully exclude all the possible problems with a network.
-  Also, we've got an opportunity to easily mock authorisation in this mode, as we've already had all the data we need to put into preferences/stores_
+  Also, we've got an opportunity to easily mock authorisation and skip some on-boarding screens in this mode, because we have a full picture in terms of http requests. _
 
 <Picture2 TBD>
 
+
+ 
 
 **Instruments:**
 
@@ -121,7 +121,7 @@ The key idea is that two modes of network operation appear in the tests:`Record 
 
 ### Conclusion
 
-There is no perfect solution exists, it all depends on a number of factors, for example, the size of the team and how often the code base changes.
+No perfect solution exists, it all depends on a number of factors, for example, the size of the team and how often the code base changes.
 It also depends on what goals you set in UI testing.
 
 ??? question "Should I avoid real network testing in general?"
