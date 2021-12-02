@@ -72,7 +72,7 @@ The key idea is that two modes of network operation appear in the tests:`Record 
 * **Replay**
   <br>_Instead of a real network, an already recorded file is used. This mode is used both locally and on CI. It allows to fully exclude all the possible problems with a network.
   Also, we've got an opportunity to easily mock authorisation and skip some on-boarding screens in this mode, because we have a full picture in terms of http requests._
-  ![alt text](../images/playback.svg "Network: Record mode")
+  ![alt text](../images/playback.svg "Network: Replay mode")
 
 
  
