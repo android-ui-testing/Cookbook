@@ -67,12 +67,12 @@ The key idea is that two modes of network operation appear in the tests:`Record 
 * **Record**
   <br>_In this mode, the test uses a real backend. However, it also records all requests and exports them to set or to one file that can be associated with a specific test. 
   <br>This mode is used locally only when writing a test_
+  ![alt text](../images/record.svg "Network: Record mode")
 
 * **Replay**
   <br>_Instead of a real network, an already recorded file is used. This mode is used both locally and on CI. It allows to fully exclude all the possible problems with a network.
-  Also, we've got an opportunity to easily mock authorisation and skip some on-boarding screens in this mode, because we have a full picture in terms of http requests. _
-
-<Picture2 TBD>
+  Also, we've got an opportunity to easily mock authorisation and skip some on-boarding screens in this mode, because we have a full picture in terms of http requests._
+  ![alt text](../images/playback.svg "Network: Record mode")
 
 
  
