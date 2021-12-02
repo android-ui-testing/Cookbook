@@ -6,7 +6,7 @@ UI testing can play a role of regular auto-testing in your project. Your app com
 
 Ideally, we want to achieve the next picture:
 
-<Picture1 TBD>
+![alt text](../images/network_goal.svg "Network: Network goal")
 
 As we can see, all levels of the application are covered, the test is fully integrated, therefore, more reliable, with
 a product quality point of view. If the backend changed the contract, we will know about it right away.
