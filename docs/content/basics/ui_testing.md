@@ -33,6 +33,9 @@ These two tools are the main tools that everyone using for Ui testing on Android
 Remember, it's possible to create tests that will use both frameworks. For example, you can find your views and interact with them by `Espresso` and in the same test call `UiAutomator` to perform something specific, like pressing volume button. <br/>
 But for usual testing you should prefer `Espresso` rather then `UiAutomator`. 
 
+`Espresso` as well as the `Jetpack Compose Testing Library` support Robolectric, while `UiAutomator` doesn't.
+That means, one can write Shared Tests written in Espresso or with Compose Library.
+
 ### Espresso
 
 ➕ Access to codebase <br/>
@@ -129,7 +132,7 @@ class ExampleInstrumentedTest {
 }
 ```
 
-### What else?
+### Espresso Cheat Sheet
 
 Espresso is quite powerful tool with a lot of abstractions inside it. 
 <br/>But there is a quite famous "cheat-sheet" for Espresso, I hope it will be helpful for everybody.
@@ -144,5 +147,16 @@ To be honest, there is a lot of edge-cases once you are trying to write your own
 Beside that fact, that `Espresso` and `UiAutomator` are the main tools to do Ui testing on Android, you may notice at [Companies experience article](https://android-ui-testing.github.io/Cookbook/adoption/companies_experience/) that almost nobody uses only these tools.<br/>
 
 That happens because there a lot of solutions nowadays created over `Espresso` and `UiAutomator` (that means that they use these frameworks under the hood), that makes your test even more stable and readable.<br/>
+Most companies do not use `Espresso` or `UiAutomator` directly, but through frameworks that wrap them under the hood:
+
+* Espresso
+    - Kakao
+    - Barista
+    - Kaspresso
+* UiAutomator
+    - Kaspresso (Kautomator)
+* Compose Test Library
+    - Kaspresso (since 1.4.0)
+    
 For example, you can see at [Page object article](https://android-ui-testing.github.io/Cookbook/practices/page_object/) how people overcome problem of readability of your tests and usually prefer something like [Kakao library](https://github.com/agoda-com/Kakao). <br/>
 Or take a look at [Flakiness article](https://android-ui-testing.github.io/Cookbook/practices/flakiness/) where you can find information why even in `Espresso` our tests might be failed even if everything looks ok and test can pass from second attempt. That article will tell you which tools helps us to minimize that risks.
