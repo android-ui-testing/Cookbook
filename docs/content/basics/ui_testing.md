@@ -62,8 +62,8 @@ Let's get familiar with Espresso.
 * Check state of `View` (using `ViewAssertion`)
 
 Let's start with the basic test.
-<br/>We have activity with one button (and no text shown), once we press it - text "Button pressed" shown.
-![alt text](../images/ui_testing/ui_testing_button.png "First state")![alt text](../images/ui_testing/ui_testing_button_clicked.png "Second state")
+<br/>We have activity with one button (and no text shown), once we press it - text "Button pressed" shown.<br/>
+![alt text](../images/ui_testing/ui_testing_button.png "First state") ![alt text](../images/ui_testing/ui_testing_button_clicked.png "Second state")<br/>
 1. We should specify which activity we should run.
 ```kotlin
 import androidx.test.ext.junit.rules.ActivityScenarioRule
