@@ -72,14 +72,14 @@ them [here](https://github.com/AdevintaSpain/Barista/tree/master/library/src/mai
 
 These are pros/cons for both solutions which don't kill the process:
 
-➕ Fast implementation<br/>
+➕ Easy implementation. Simply add the corresponding TestRules<br/> 
 ➕ Fast execution in the same process<br/>
 <br/>
 ➖ Don't give you any guarantee that your app will be cleared properly<br/>
 ➖ Application or Test process killing will break tests execution <br/>
-➖ Can be a bottleneck<br/>
+➖ Can be a bottleneck<br/> 
 
-Use these solutions only as a temp workaround, because it won't work on perspective in huge projects
+Use these solutions only as a temp workaround, because it won't work in long-term for huge projects
 
 ### 2. Clearing package data
 
@@ -103,11 +103,11 @@ That's the idea behind of `Orchestrator`.
 It's an `apk` which only consists of [several classes](https://github.com/android/android-test/tree/master/runner/android_test_orchestrator/java/androidx/test/orchestrator)
 that run tests and clear data, as described above.
 
-You should install an `orchestrator` along with `application.apk` and `instrumented.apk` on the device.
+It is necessary to install an `orchestrator` along with the `application.apk` and the `instrumented.apk` on the device.
 
 But that's not all.
 <br/>
-Orchestrator also needs to execute adb commands. For that it uses [special services.](https://github.com/android/android-test/tree/master/services) under the hood.
+The Orchestrator also needs to execute adb commands. For that it uses [special services.](https://github.com/android/android-test/tree/master/services) under the hood.
 It's just a shell client and should be installed on the device.
 
 ![alt text](../images/orchestrator.png "orchestrator and test-services")
@@ -133,13 +133,15 @@ this logic to a host machine.
 
 These are pros/cons for an `orchestrator` and 3rd party test runners solution:
 
-➕ Does the job for us in 100% <br/>
+➕ Does 100% of the job for us<br/>
+➕ Avoid test failing in cascade due to the application process being killed<br/>
 <br/>
-➖ Slow execution _(can take 10+ seconds and depends on apk size)_ <br/>
-➖ Orchestrator — over-complicated <br/>
+➖ Slow execution <br/> 
+➖ Requires to install extra components — over-complicated: <br/>
 
-Each `adb pm clear` takes some time and depends on apk size. Below you may see some gaps between the tests which
-represent such a delay.
+The slow execution has 2 sources:
+1. The killing and restarting of the process where the test runs.
+2. Executing `adb pm clear` after each test takes some time and depends on apk size. Below you may see some gaps between the tests which represent such a delay.
 
 ![alt text](../images/package_clear.png "ADB package clearing takes some time")
 
