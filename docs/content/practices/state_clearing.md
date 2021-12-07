@@ -146,7 +146,7 @@ The slow execution has 2 sources:
 ![alt text](../images/package_clear.png "ADB package clearing takes some time")
 
 
-## Suggestion
+## Final conclusion
 !!! success
 
     Only package clearing can guarantee that the data will be cleared properly between test executions.
