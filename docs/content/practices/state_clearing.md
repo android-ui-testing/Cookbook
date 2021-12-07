@@ -33,7 +33,7 @@ application:
 Databases, Files, Preferences and Runtime cache, and should be executed before each test.
 !!! danger
 
-    This solution is a bottleneck and it's better to avoid it at all. If LogoutCleaner is broken, all of the tests will be failed.
+    This solution is a bottleneck and it's better to avoid it at all. If LogoutCleaner is broken, all of the tests will be failed. 
 
 <br/>
 
@@ -140,7 +140,7 @@ These are pros/cons for an `orchestrator` and 3rd party test runners solution:
 ➖ Requires to install extra components — over-complicated: <br/>
 
 The slow execution has 2 sources:
-1. The killing and restarting of the process where the test runs.
+1. The time consumed in killing and restarting the process where each test runs, multiplied by the amount of tests.
 2. Executing `adb pm clear` after each test takes some time and depends on apk size. Below you may see some gaps between the tests which represent such a delay.
 
 ![alt text](../images/package_clear.png "ADB package clearing takes some time")
