@@ -75,7 +75,7 @@ Unlike UI tests, it is not possible to write shared tests
 
 ## Related links
 ### Blog posts
-[An introduction to snapshot testing on Android in 2021](https://sergiosastre.hashnode.dev/an-introduction-to-snapshot-testing-on-android-in-2021)
+[An introduction to snapshot testing on Android in 2021](https://sergiosastre.hashnode.dev/an-introduction-to-snapshot-testing-on-android-in-2021)</br>
 [The secrets of effectively snapshot testing on Android](https://sergiosastre.hashnode.dev/the-secrets-of-effectively-snapshot-testing-on-android)
 ### Code repos
 [Road to Effective Snapshot Testing](https://github.com/sergio-sastre/Road-To-Effective-Snapshot-Testing)
