@@ -117,7 +117,7 @@ on which they can run.
 2. run your emulator via `avd manager` and 
 3. switch the `ini` file generated in 2. with the one we create in 1.
 
-## How to run an emulator in a Docker?
+## How to run an emulator in Docker?
 
 Running an emulator in a docker is way easier than manually, because it encapsulates all this logic. If you don't have
 experience with docker, check
