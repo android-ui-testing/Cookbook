@@ -9,10 +9,10 @@ Using docker image is the easiest way, however it's important to understand how 
 
 ## Creating an emulator
 
-Before starting to read this topic, make sure you've read
-an [an official documentation](https://developer.android.com/studio/run/emulator-commandline)
+Before starting to read this, make sure you've read
+[the official documentation](https://developer.android.com/studio/run/emulator-commandline)
 
-Firstly, you need to create an `ini` configuration:
+Firstly, you need to create an `ini` configuration file for the emulator:
 
 ```ini
 PlayStore.enabled=false
@@ -48,7 +48,7 @@ skin.name=320x480
 disk.dataPartition.size=8G
 ```
 
-Pay your attention that we disabled:
+Pay attention to what we have disabled:
 
 * Accelerometer
 * Audio input/output
@@ -56,11 +56,11 @@ Pay your attention that we disabled:
 * Sensors:Accelerometer, Humidity, Pressure, Light
 * Gyroscope
 
-We don't really need them for our tests run. It also may improve our tests performance, because there are no background
-operations related to that tasks.
+We don't really need them for our test runs. It also may improve our tests performance, because there are no background
+operations related to those tasks.
 
-After that, you can run your emulator by `avd manager`, which is a part of android sdk manager. After your device
-creation, you need change default generated ini file to custom one. You may see an example below:
+After that, you can run your emulator via `avd manager`, which is part of the android sdk manager. After your device
+creation, you need to change the default generated `ini` file to a custom one. Take a look at the example below:
 
 ```bash
 function define_android_sdk_environment_if_needed() {
@@ -109,21 +109,22 @@ define_path_environment_if_needed
 create_and_patch_emulator
 ```
 
-Pay your attention that you also need to wait until your emulator is fully booted.
+Keep in mind that you also need to wait until your emulator is fully booted. Otherwise the tests will fail because there is still no device ready
+on which the test can run.
 
 ## How to run an emulator in a Docker?
 
-Running an emulator in a docker a way easier than manually, because it encapsulates all this logic. If you don't have an
-experience with docker, you can check
-[this guide](https://www.youtube.com/watch?v=zJ6WbK9zFpI) to check the basics.
+Running an emulator in a docker is way easier than manually, because it encapsulates all this logic. If you don't have
+experience with docker, check
+[this guide](https://www.youtube.com/watch?v=zJ6WbK9zFpI) to get familiarized with the basics.
 
-There are some popular already built docker images for you:
+There are some popular docker images already built for you:
 
 * [Official Google emulator](https://github.com/google/android-emulator-container-scripts)
 * [Agoda emulator](https://github.com/agoda-com/docker-emulator-android)
 * [Avito emulator](https://hub.docker.com/r/avitotech/android-emulator-29)
 
-Talking about [Avito emulator](https://github.com/google/android-emulator-container-scripts), it also patches your
+Talking about the [Avito emulator](https://github.com/google/android-emulator-container-scripts), it also patches your
 emulator with adb commands to prevent tests flakiness and to speed them up
 
 ##### Run Avito emulator
@@ -154,18 +155,18 @@ docker rm $(docker ps -a -q)
 ## Conclusion
 
 * Use docker emulators </br>
-  _You also will have an opportunity to run them with `Kubernetes`, to make it scalable in the future_
+  _You'll also have the opportunity to run them with `Kubernetes`, to make it scalable in the future_
 
-* Start fresh emulators each test batch and kill them after all of your tests finished</br>
-  _Emulators tend to leak and may not work properly after some time_
+* Start fresh emulators on each test batch and kill them after all of your tests finished</br>
+  _Emulators tend to freeze and may not work properly after idling for some time_
 
-* Use the same emulator as on CI locally</br>
+* Use the same emulator locally as on your CI </br>
   _All devices are different. It can save you a lot of time with debugging and understanding why your test works locally
-  and fails on CI. It won't be possible to run Docker emulator on macOS or Windows, because
+  and fails on CI. It won't be possible to run Docker emulators on macOS or Windows, because
   of [haxm#51](https://github.com/intel/haxm/issues/51#issuecomment-389731675). Use AVD to launch them on such
   machines (script above may help you)_
 
 !!! warning
 
-    To run an emulator on CI with a docker, make sure that nested virtualisation supported and KVM installed.
+    To run an emulator on CI with a docker, make sure that nested virtualisation is supported and KVM is installed.
     You can check more details [here](https://developer.android.com/studio/run/emulator-acceleration#vm-linux)
