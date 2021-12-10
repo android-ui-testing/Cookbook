@@ -1,11 +1,11 @@
 # Emulator setup
 
-Basically we have next choices:
+Basically we have 2 choices:
 
-* Manage devices automatically by `avd`
-* Manage docker containers with emulators by `docker`
+* Manage devices automatically via `avd`
+* Manage docker containers with emulators with `docker`
 
-Using docker image is the easiest way, however it's important to understand how docker creates device for you.
+Using a docker image is the easiest way, however it's important to understand how docker creates emulators for you.
 
 ## Creating an emulator
 
@@ -59,8 +59,8 @@ Pay attention to what we have disabled:
 We don't really need them for our test runs. It also may improve our tests performance, because there are no background
 operations related to those tasks.
 
-After that, you can run your emulator via `avd manager`, which is part of the android sdk manager. After your device
-creation, you need to change the default generated `ini` file to a custom one. Take a look at the example below:
+After that, you can run your emulator via `avd manager`, which is part of the android sdk manager. After creating the emulator, you need to switch the default generated `ini` file to the custom one we defined previously. 
+You can achieve that with a script like this one:
 
 ```bash
 function define_android_sdk_environment_if_needed() {
@@ -109,8 +109,13 @@ define_path_environment_if_needed
 create_and_patch_emulator
 ```
 
-Keep in mind that you also need to wait until your emulator is fully booted. Otherwise the tests will fail because there is still no device ready
-on which the test can run.
+Keep in mind that the emulator must fully boot before running any test. Otherwise the tests will fail because there is still no device ready
+on which they can run.
+
+### Summary
+1. create an `ini` configuration file for the emulator
+2. run your emulator via `avd manager` and 
+3. switch the `ini` file generated in 2. with the one we create in 1.
 
 ## How to run an emulator in a Docker?
 
@@ -125,7 +130,7 @@ There are some popular docker images already built for you:
 * [Avito emulator](https://hub.docker.com/r/avitotech/android-emulator-29)
 
 Talking about the [Avito emulator](https://github.com/google/android-emulator-container-scripts), it also patches your
-emulator with adb commands to prevent tests flakiness and to speed them up
+emulator with adb commands to prevent tests flakiness and to speed them up.
 
 ##### Run Avito emulator
 
