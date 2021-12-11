@@ -88,5 +88,5 @@ for screens which implemented by using that components.
 `Test data:` End2End testing with test stands<br> 
 `Test report:` [Allure](http://allure.qatools.ru/)<br>
 `Test stability monitoring:`<br>  
-        - Custom tool for showing trends for every test;<br> 
+        - Custom tool for success rate visualization of each test between CI runs;<br> 
         - [Grafana](https://grafana.com/) for common graphs.<br> 
