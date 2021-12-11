@@ -79,7 +79,7 @@ for screens which implemented by using that components.
 
 : `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) wrapped with custom DSL for creating a test data  <br> 
 `Who writes:` QA with support of Android Engineers <br>
-`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) locally and on the CI <br>
+`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) on the CI <br>
 `Where:` Headless emulators in Docker (Custom Image) at k8s <br>
 `How often:` <br>  
         - Every night on every Portfolio branch(*) and develop; <br>  
@@ -87,6 +87,6 @@ for screens which implemented by using that components.
         * Portfolio branch is a protected branch for each business feature. <br> 
 `Test data:` End2End testing with test stands<br> 
 `Test report:` [Allure](http://allure.qatools.ru/)<br>
-`Test stability monitoring:`     <br>  
+`Test stability monitoring:`<br>  
         - Custom tool for showing trends for every test;<br> 
         - [Grafana](https://grafana.com/) for common graphs.<br> 
