@@ -72,3 +72,21 @@ for screens which implemented by using that components.
 `Where:` On CI: emulators <br>
 `How often:` On every PR <br>
 `Test report:` Shot report, which includes image diffs when tests fail <br>
+
+## Headhunter (hh.ru)
+
+`UI testing`
+
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) wrapped with custom DSL for creating a test data  <br> 
+`Who writes:` QA with support of Android Engineers <br>
+`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) on the CI <br>
+`Where:` Headless emulators in Docker (Custom Image) at k8s <br>
+`How often:` <br>  
+        - Every night on every Portfolio branch(*) and develop; <br>  
+        - Every PR to develop. <br>
+        * Portfolio branch is a protected branch for each business feature. <br> 
+`Test data:` End2End testing with test stands<br> 
+`Test report:` [Allure](http://allure.qatools.ru/)<br>
+`Test stability monitoring:`<br>  
+        - Custom tool for success rate visualization of each test between CI runs;<br> 
+        - [Grafana](https://grafana.com/) for common graphs.<br> 
