@@ -2,7 +2,7 @@
 
 How to make tests more clear and readable?
 
-## Problem:
+## Problem
 
 There is a lot of `ViewMatchers` and so on in our tests once we need to find exact `View`.
 <br/>
@@ -15,7 +15,7 @@ is a child of `RecyclerView`)
 
 What should we do in the above cases? May we should extract this `View` to another abstraction?
 
-### PageObject pattern
+## Solution: Page Object Pattern
 
 Actually that pattern came to Android world from Web testing. This is how `PageObject` determined by one of its creator:
 > The basic rule of thumb for a page object is that it should allow a software client to do anything and see anything that a human can. It should also provide an interface that's easy to program to and hides the underlying widgetry in the window. So to access a text field you should have accessor methods that take and return a string, check boxes should use booleans, and buttons should be represented by action oriented method names.
