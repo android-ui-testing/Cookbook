@@ -65,7 +65,7 @@ All of them used `AndroidJunitRunner` under the hood, as it's the only possibili
 Powerful and the most pragmatic test runner. All you need to do it's just to connect devices to `adb`, and Marathon will
 do the whole job for you.
 
-➕ CLI, Gradle Plugin <br>
+➕ Stand-alone or Gradle Plugin <br>
 ➕ Easy data clearing _(without an Orchestrator)_ <br>
 ➕ Flexible configuration with filters <br>
 ➕ Flakiness strategies <br>
@@ -101,8 +101,11 @@ Powerful test runner. Works directly with `Kubernetes`
 ➕ Easy data clearing _(without an Orchestrator)_ <br>
 ➕ Auto-scaling on fly _(There is a coroutine in the background which tries to connect more devices)_
 ➕ Retries
+➕ Good test report <br>
+➕ Unit tests support <br>
 
 ➖ Complicated adoption <br>
+➖ No stand-alone solution
 
 This test runner has been using by Avito company for 4+ years and runs thousands tests every day. It's not as powerful
 as Marathon, however it doesn't have an analogue in terms of auto scaling from the box.<br>
@@ -114,15 +117,27 @@ Engineers from Avito are ready to help with adoption. You can contact to [Dmitri
 
 #### [:green_square: 2.3 Fork](https://github.com/shazam/fork)
 
-//To be done
+➕ Retries <br>
+➕ Filters <br>
+➕ Good test report with flakiness <br>
+➕ Stand-alone or Gradle plugin
+➕ Performance profiling with [Chimprunner](https://github.com/shazam/fork#chimprunner)
+
+➖ Data clearing <br>
+➖ Not actively maintains <br>
 
 #### [:green_square: 2.4 Flank](https://github.com/Flank/flank)
 
-//To be done
+➕ Don't need to care about Device infrastructure<br>
+➕ Easy device data clearing _(With an Orchestrator internally)_<br>
+➕ Stand-alone or Gradle plugin<br>
+➕ Huge variety for choosing devices _(Emulators/Real devices)_<br>
+➕ Good test report <br>
+➕ Additional gradle plugin: [Fladle] (https://github.com/runningcode/fladle)<br>
 
-#### [:green_square: 2.5 Flade](https://github.com/runningcode/fladle)
+➖ Paid service<br>
 
-//To be done
+
 
 #### [:red_square: 2.6 Spoon](https://github.com/square/spoon)
 
@@ -131,3 +146,9 @@ Deprecated and not maintained anymore. Do not use it
 #### [:red_square: 2.7 Composer](https://github.com/gojuno/composer)
 
 Deprecated and not maintained anymore. Do not use it
+
+## Conclusion
+There is no right and wrong choice. As you see, all test runners have something unique.
+<br>Keep in mind that nowadays Marathon is the most powerful test runner and will be pragmatic choice for any team.
+
+From the other side, if you need to have a result right here and right now and you are ready to pay, Flank or Fladle will be pragmatic options.
