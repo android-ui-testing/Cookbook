@@ -1,8 +1,6 @@
 # Cookbook
-
-![alt text](docs/content/images/home_header.svg "Header")
 An open-source documentation about Android UI testing:
-https://android-ui-testing.github.io/Cookbook/home/
+<br>https://android-ui-testing.github.io/Cookbook/home/
 
 
 ### Roadmap
