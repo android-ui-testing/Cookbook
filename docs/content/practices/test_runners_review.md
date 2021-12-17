@@ -133,7 +133,7 @@ Engineers from Avito are ready to help with adoption. You can contact to [Dmitri
 ➕ Stand-alone or Gradle plugin<br>
 ➕ Huge variety for choosing devices _(Emulators/Real devices)_<br>
 ➕ Good test report <br>
-➕ Additional gradle plugin: [Fladle] (https://github.com/runningcode/fladle)<br>
+➕ Additional gradle plugin: [Fladle](https://github.com/runningcode/fladle)<br>
 
 ➖ Paid service<br>
 
