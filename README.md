@@ -8,6 +8,7 @@ An open-source documentation about Android UI testing:
 2. Practices: Code style
 3. Practices: Run UI tests on obfuscated build
 4. Practices: Shared UI tests guide
+5. Practices: Test reports
 
 
 ### Authors
