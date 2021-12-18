@@ -1,25 +1,25 @@
-It might be confusing to understand when to write Ui test rather than Screenshot tests and vice versa. They do not replace each other. Their focus is different as previously mentioned.
+It might be confusing to understand when to write UI test rather than Screenshot tests and vice versa. They do not replace each other. Their focus is different as previously mentioned.
 So let's imagine the following screen, which is a RecyclerView
 
 ![language learning app](../images/snapshotVsUiTests.gif "Snapshot testing example")
 
-## What to Ui test
-A *Ui test would verify*, e.g. that after deleting a row in the RecyclerView, that row is not displayed anymore. It would test *WHAT is displayed after interacting with the view*
+## What to UI test
+A *UI test would verify*, e.g. that after deleting a row in the RecyclerView, that row is not displayed anymore. It would test *WHAT is displayed after interacting with the view*
 </br></br>
 Therefore, write a Ui test if:
 
 1. You need to interact with one or more views
 2. You need to assert a certain behaviour after such interactions
     1. Navigation to another screen
-    2. Visibility of some Ui elements
+    2. Visibility of some UI elements
     
-You do not mind how pixel perfect every single ui element looks on the screen. You just care about the result of your interactions: *WHAT is displayed* instead of *HOW it is displayed*
+You do not mind how pixel perfect every single UI element looks on the screen. You just care about the result of your interactions: *WHAT is displayed* instead of *HOW it is displayed*
 
 ## What to Screenshot test
 On the other hand, a *snapshot test would verify HOW that row is displayed* under numerous states and configurations: e.g. dark/light mode, LTR/RTL languages, different font sizes, wide/narrow screens...
 Therefore, write a Snapshot test if:
 
-1. you've made a visual change in a Ui element
+1. you've made a visual change in an UI element
 2. you want to verify HOW that change is displayed under different configurations
 
 In this case you are saving time to yourself and everybody involved in the QA process: **nobody needs to play around with numerous settings/states** to ensure everything looks pixel perfect. That process is cumbersome and you've automated it.
@@ -29,19 +29,19 @@ In this case you are saving time to yourself and everybody involved in the QA pr
 Down: Row in dark mode
 
 ## Use the right tool for the job
-If you are new to Screenshot testing, don't fall into the trap of thinking that it can replace Ui testing. 
+If you are new to Screenshot testing, don't fall into the trap of thinking that it can replace UI testing. 
 
 For our test case, we wanted to verify that after deleting a row in the RecyclerView, that row is not displayed anymore.
 If you had the test already written, it'd be as simple as replacing your view visibility assert with a snapshot one at the end of the test.
-However, keep in mind that this approach does not solve some common problems with Ui testing:
+However, keep in mind that this approach does not solve some common problems with UI testing:
 
-1. **Flakiness**: Screenshot tests also come with flakiness, and even its own issues e.g. mind dates if displaying any (more about this later). As with Ui tests, those problems can be mitigated though.
+1. **Flakiness**: Screenshot tests also come with flakiness, and even its own issues e.g. mind dates if displaying any (more about this later). As with UI tests, those problems can be mitigated though.
 
 2. **Speed**:
      - *Fake Snapshot tests*: Writing Screenshot tests that interact with views the same way as Ui tests, *do not make them any faster*. For that you need to write Screenshot tests that just inflate a view under a given state and snapshot it. This is what I call a *fake Screenshot test: a Ui test disguised with a snapshot assert*.
      - *Less-scalable test sharding*: If you are using a cloud device service like Firebase test lab with test sharding to speed up the execution, it is not that simple. Snapshot file comparisons are done pixel by pixel.
        This means, all tests must run on the same device models across all parts involved (devs and CI) to ensure that the resolution, screen size and api create screenshots with identical pixels. This restricts a lot the speed wins of test sharding usually gained with such services.
-       </br></br>While all Ui tests can be distributed among all devices, snapshot tests can only use a portion: those devices with the same config that developers use to record the snapshots. This is depicted below
+       </br></br>While all UI tests can be distributed among all devices, snapshot tests can only use a portion: those devices with the same config that developers use to record the snapshots. This is depicted below
 
 ![test sharding](../images/test_sharding_scalation.png "Test sharding")
        
@@ -76,10 +76,15 @@ the date changes on every run, making your "fake screenshot test" fail. Again, f
 
 Therefore, *every subtle change on the screen will require to record a new snapshot, although that change had nothing to do with the initial intention of the test*.
 
-On the other hand, a Ui test would have not failed since we would be asserting whether the deleted row was displayed or not. No visuals involved.
+On the other hand, an UI test would have not failed since we would be asserting whether the deleted row was displayed or not. No visuals involved.
 
 ## Conclusion
-1. **Use both Ui test and Snapshot tests**, they complement each other. They aim to assert different things.
-2. **Avoid fake snapshot tests**, they usually add up troubles compared to ui tests rather than mitigating their issues.
+1. **Use both UI test and Snapshot tests**, they complement each other. They aim to assert different things.
+2. **Avoid fake snapshot tests**, they usually add up troubles compared to UI tests rather than mitigating their issues.
 3. **Use the right tool for the job**: using Screenshot tests for testing interactions leads to **brittle tests**.
+
+## Further reading
+### Blog post
+A more detailed blog post on this matter:
+[UI tests vs. snapshot tests on Android: which one should I write? 🤔](https://sergiosastre.hashnode.dev/ui-tests-vs-snapshot-tests-on-android-which-one-should-i-write)
 
