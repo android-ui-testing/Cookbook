@@ -38,6 +38,7 @@ extra:
 nav:
   - Home:
       - home/index.md
+      - home/roadmap.md
       - home/contribution.md
   - Basics:
       - Testing theory: basics/testing_theory.md
