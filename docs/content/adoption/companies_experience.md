@@ -72,3 +72,30 @@ for screens which implemented by using that components.
 `Where:` On CI: emulators <br>
 `How often:` On every PR <br>
 `Test report:` Shot report, which includes image diffs when tests fail <br>
+
+## Headhunter (hh.ru)
+
+`UI testing`
+
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) wrapped with custom DSL for creating a test data  <br> 
+`Who writes:` QA with support of Android Engineers <br>
+`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) on the CI <br>
+`Where:` Headless emulators in Docker (Custom Image) at k8s <br>
+`How often:` Every night on every Portfolio branch(protected branch for each business feature) and develop; Every PR to develop.<br> 
+`Test data:` End2End testing with test stands<br> 
+`Test report:` [Allure](http://allure.qatools.ru/)<br>
+`Test stability monitoring:` Custom tool for success rate visualization of each test between CI runs; [Grafana](https://grafana.com/) for common graphs.
+
+## Delivery Club
+
+`UI testing`
+
+:   
+`Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
+`Who:` QA and developers <br>
+`Runner:` [Delivery Club fork of Avito Runner](https://github.com/materkey/avito-android/tree/dc-fresh), [Argo Workflows](https://argoproj.github.io/workflows/) <br>
+`Where:` [Fork of Avito Emulator](https://github.com/materkey/avito-android/tree/dc-fresh/ci/docker), [DockerHub](https://hub.docker.com/repository/docker/materkey/android-emulator-29) <br>
+`How often:` Each commit for Courier App, Nightly for Consumer App, Before regress testing <br>
+`Network:` [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) <br>
+`Test report:` [Kaspresso Allure Integration + Avito Runner Integration](https://github.com/materkey/avito-android/blob/ea458699701727fc0bfd2cb2022e25539e0746e1/subprojects/test-runner/client/src/main/kotlin/com/avito/runner/finalizer/action/WriteAllureReportAction.kt) <br>
+`Other:` [Run Marathon in cloud](https://github.com/materkey/run-android-ui-tests-in-cloud) <br>
