@@ -99,3 +99,18 @@ for screens which implemented by using that components.
 `Network:` [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) <br>
 `Test report:` [Kaspresso Allure Integration + Avito Runner Integration](https://github.com/materkey/avito-android/blob/ea458699701727fc0bfd2cb2022e25539e0746e1/subprojects/test-runner/client/src/main/kotlin/com/avito/runner/finalizer/action/WriteAllureReportAction.kt) <br>
 `Other:` [Run Marathon in cloud](https://github.com/materkey/run-android-ui-tests-in-cloud) <br>
+
+## Auto.ru
+
+`UI testing & Screenshot testing`
+
+:   
+`Write:` Espresso, [Screenshot tests from facebook](https://github.com/facebook/screenshot-tests-for-android)<br>
+`Who:` Android Developers and QA Engineers <br>
+`Runner:` Custom runner based on Android Orchestrator <br>
+`Where:` Emulators <br>
+`How often:` Each commit, nightly and before release <br>
+`Network:` [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) <br>
+`Test report:` [Allure](http://allure.qatools.ru/)<br>
+`Test monitoring:` Collecting allure info in Postgres db and displaying it in [DataLens](https://cloud.yandex.com/en/services/datalens), finding flaky packages, common errors, alerts, etc. <br>
+
