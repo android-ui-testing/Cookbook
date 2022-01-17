@@ -114,3 +114,16 @@ for screens which implemented by using that components.
 `Test report:` [Allure](http://allure.qatools.ru/)<br>
 `Test monitoring:` Collecting allure info in Postgres db and displaying it in [DataLens](https://cloud.yandex.com/en/services/datalens), finding flaky packages, common errors, alerts, etc. <br>
 
+## CFT
+
+`UI testing`
+
+:   
+`Write:`[Kaspresso](https://github.com/KasperskyLab/Kaspresso)<br>
+`Who:` Android Developers and QA Engineers <br>
+`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) on the CI <br>
+`Where:` Emulators <br>
+`How often:` On every PR and one time per day on Main branch <br>
+`Network:` Custom mockapi server <br>
+`Test report:` [Allure](http://allure.qatools.ru/)<br>
+`Test monitoring:`Using Allure reports and Grafana monitoring for stable, resources work` <br>
