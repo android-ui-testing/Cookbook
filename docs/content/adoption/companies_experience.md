@@ -127,3 +127,16 @@ for screens which implemented by using that components.
 `Network:` Custom mockapi server <br>
 `Test report:` [Allure](http://allure.qatools.ru/)<br>
 `Test monitoring:`Using Allure reports and Grafana monitoring for stable, resources work` <br>
+
+## Ситимобил
+
+`UI testing`
+
+:
+`Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso)<br>
+`Who writes:` QA Automation and QA Engineers<br>
+`Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) on the CI <br>
+`Where:` Emulators <br>
+`How often:` Each merge request <br>
+`Test report:` [Allure](http://allure.qatools.ru/)<br>
+`Network:` Custom mock system <br>
