@@ -140,3 +140,16 @@ for screens which implemented by using that components.
 `How often:` Each merge request <br>
 `Test report:` [Allure](http://allure.qatools.ru/)<br>
 `Network:` Custom mock system <br>
+
+## BetterMe
+
+`UI testing`
+
+:   
+`Write:` Espresso, UIAutomator, [Ultron](https://github.com/alex-tiurin/ultron), compose ui-test <br>
+`Who write:` QA Automation Engineers <br>
+`Runner:` AllureAndroidJUnitRunner <br>
+`Where:` on CI: emulators <br>
+`How often:` nightly and before each release <br>
+`Test report:` [Allure TestOps](https://docs.qameta.io/allure-testops/) <br>
+`Test monitoring:` [Allure TestOps](https://docs.qameta.io/allure-testops/) <br>
