@@ -90,8 +90,7 @@ for screens which implemented by using that components.
 
 `UI testing`
 
-:
-`Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
 `Who:` QA and developers <br>
 `Runner:` [Delivery Club fork of Avito Runner](https://github.com/materkey/avito-android/tree/dc-fresh), [Argo Workflows](https://argoproj.github.io/workflows/) <br>
 `Where:` [Redroid AiC](https://github.com/remote-android/redroid-doc), [Redroid in DockerHub](https://hub.docker.com/repository/docker/materkey/redroid), [Fork of Avito Emulator](https://github.com/materkey/avito-android/tree/dc-fresh/ci/docker), [Fork of Avito Emulator in DockerHub](https://hub.docker.com/repository/docker/materkey/android-emulator-29) <br>
@@ -132,8 +131,7 @@ for screens which implemented by using that components.
 
 `UI testing`
 
-:
-`Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso)<br>
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso)<br>
 `Who writes:` QA Automation and QA Engineers<br>
 `Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) on the CI <br>
 `Where:` Emulators <br>
