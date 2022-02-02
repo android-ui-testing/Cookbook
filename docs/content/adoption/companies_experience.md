@@ -90,12 +90,11 @@ for screens which implemented by using that components.
 
 `UI testing`
 
-:   
-`Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso) <br>
 `Who:` QA and developers <br>
 `Runner:` [Delivery Club fork of Avito Runner](https://github.com/materkey/avito-android/tree/dc-fresh), [Argo Workflows](https://argoproj.github.io/workflows/) <br>
-`Where:` [Fork of Avito Emulator](https://github.com/materkey/avito-android/tree/dc-fresh/ci/docker), [DockerHub](https://hub.docker.com/repository/docker/materkey/android-emulator-29) <br>
-`How often:` Each commit for Courier App, Nightly for Consumer App, Before regress testing <br>
+`Where:` [Redroid AiC](https://github.com/remote-android/redroid-doc), [Redroid in DockerHub](https://hub.docker.com/repository/docker/materkey/redroid), [Fork of Avito Emulator](https://github.com/materkey/avito-android/tree/dc-fresh/ci/docker), [Fork of Avito Emulator in DockerHub](https://hub.docker.com/repository/docker/materkey/android-emulator-29) <br>
+`How often:` Each commit for Courier App and Consumer App, Before regress testing <br>
 `Network:` [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) <br>
 `Test report:` [Kaspresso Allure Integration + Avito Runner Integration](https://github.com/materkey/avito-android/blob/ea458699701727fc0bfd2cb2022e25539e0746e1/subprojects/test-runner/client/src/main/kotlin/com/avito/runner/finalizer/action/WriteAllureReportAction.kt) <br>
 `Other:` [Run Marathon in cloud](https://github.com/materkey/run-android-ui-tests-in-cloud) <br>
@@ -132,8 +131,7 @@ for screens which implemented by using that components.
 
 `UI testing`
 
-:
-`Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso)<br>
+: `Write:` [Kaspresso](https://github.com/KasperskyLab/Kaspresso)<br>
 `Who writes:` QA Automation and QA Engineers<br>
 `Runner:` [Marathon](https://android-ui-testing.github.io/Cookbook/practices/test_runners_review/#21-marathon) on the CI <br>
 `Where:` Emulators <br>
