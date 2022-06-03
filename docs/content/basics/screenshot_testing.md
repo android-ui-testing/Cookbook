@@ -1,10 +1,11 @@
 # Screenshot testing
 
 ## What it is
-Screenshot testing (also called Snapshot testing) has been in the Android world since 8th October 2015, when Facebook open sourced the first version of their snapshot testing library.
-
-They are a special type of UI tests that inflate a view, take a screenshot of it, and compare it to an already stored image taken as reference. This reference is considered the source of truth: it depicts how the UI must be displayed, pixel by pixel.
+Screenshot tests (also called snapshot tests) are a special type of UI tests that inflate a view, take a screenshot of it, and compare it to an already stored image taken as reference. This reference is considered the source of truth: it depicts how the UI must be displayed, pixel by pixel.
 If the generated snapshot file from the test differs from the reference, the test fails, passes otherwise.
+
+The first documented use of screenshot testing dates of April 2011, in a [blog post](https://dtmilano.blogspot.com/2011/04/monkeyrunner-visual-image-comparison.html) where Diego Torres Milano explains how to do visual image comparison with Monkeyrunner.  
+Nevertheless, it started gaining popularity in Android since 8th October 2015, when Facebook open sourced the first version of their snapshot testing library.
 
 ## Motivation
 Screenshot tests are easy to write and maintain and run fast (≈ 1 sec per test), what makes them affordable to execute upon PRs.
@@ -79,7 +80,9 @@ One could also use real devices for snapshot testing, but it does not scale. Dev
      
      - [Shot](https://github.com/pedrovgs/Shot): Written on top of Facebook by Pedro.
      
-     - [Testify](https://github.com/Shopify/android-testify#readme): Shopify framework. Last one open sourced
+     - [Testify](https://github.com/Shopify/android-testify#readme): Shopify library. 
+   
+     - [Dropshots](https://github.com/dropbox/dropshots): Dropbox library. Last one open sourced.
 
 2. JVM
      - [Paparazzi](https://github.com/cashapp/paparazzi): Square framework
