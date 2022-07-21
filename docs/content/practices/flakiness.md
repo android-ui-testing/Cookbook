@@ -2,10 +2,10 @@
 
 ![alt text](../images/practices/header_flakiness.svg "Sad")
 
-Flakiness it's an unstable behavior of particular test. If you execute this test N times, it won't pass `N/N`. Or, it
-can pass only locally, but always or often failed on the CI.
+Flakiness means lack of reliability on a particular test. If you execute this test N times, it won't pass `N/N`. Or, it
+might only pass locally, but it often (or always) fails on the CI.
 
-It's the most frustrating problem in instrumented testing, which requires a lot of time from engineers to fight.
+Understanding the causes of flakiness is the most frustrating problem in instrumented testing, which requires a lot of time from engineers to fight against.
 
 ## Reason
 
@@ -14,33 +14,30 @@ It's the most frustrating problem in instrumented testing, which requires a lot 
 * Test code </br>
   `Example: testing toasts/snack-bars`
 * A real device or Emulator </br>
-  `Example: Disk/Battery/Processor/Memory issues or notification has shown on the device`
+  `Example: Disk/Battery/Processor/Memory issues or notification showed up on the device`
 * Infrastructure </br>
   `Example: Processor/Disk/Memory issues`
 
 {==
 
-It's not possible to fight flakiness on 100% if your codebase changes every day (including the new sources of flakiness)
+It's not possible to completely eradicate flakiness if your codebase changes every day: every code change can potentially add flakiness.
 
-However, it's possible to reduce it and achieve good percentage of flakiness free.
+However, it's possible to reduce it and achieve a good percentage of flakiness free.
 
 ==}
 
-In general, to reduce flakiness you need to choose tools like framework for writing, test runner and emulator properly
+In general, the key to reduce flakiness is to pick the right tools: **test framework**, **test runner** and **emulator**
 
 ## Flakiness protection
 
 #### 1. Wait for the content appearing </br>
 
-:   When we have an http request or other asynchronous operation, it's not possible to predict how soon our expected
-content will be shown on the screen.<br>By default, Espresso framework will fail assertion if there is no expected
-content in a particular time.
+:   When a http request or any other asynchronous operation is running, it's not possible to predict how long it takes to return a response to fill our screen with data.<br>If there is no content on the screen at the time the Espresso assertions occur, the tests will fail.
 </br>
-Google provided [Idling Resources](https://developer.android.com/training/testing/espresso/idling-resource) to catch
+In order to solve this problem, Google provided [Idling Resources](https://developer.android.com/training/testing/espresso/idling-resource) to watch
 asynchronous operations.
-</br> However, this goes against the common testing best practice of not putting testing code inside your application
-code and also requires an additional effort from engineers.</br>
-Recommended by community way it's to use smart-waiting (aka flaky safely algorithm) like this
+</br> However, Idling Resources require putting testing code in production. This goes against the common testing best practices and also requires an additional effort from engineers.</br>
+The recommended means by the community is to use smart-waiting (aka flaky safely algorithm) like this
 :
 ```kotlin
 fun <T> invokeFlakySafely(
@@ -73,24 +70,23 @@ fun <T> invokeFlakySafely(
     }
 ```
 
-: This is an internals of
+: This algorithm is the foundation of
 the [Kaspresso library](https://github.com/KasperskyLab/Kaspresso/blob/c8c32004494071e6851d814598199e13c495bf00/kaspresso/src/main/kotlin/com/kaspersky/kaspresso/flakysafety/algorithm/FlakySafetyAlgorithm.kt)
 
-: Official documentation says that it's not a good way to handle this, because of an additional consuming of CPU
-resources. However, it's a pragmatic trade-off which speed ui testing writing up and relieves engineers from thinking
+: Official documentation says that it's not a good way to handle this, because of additional CPU consumption. However, it's a pragmatic trade-off which speeds up writing of ui tests and relieves engineers from thinking
 about this problem at all.
 
-: Some frameworks have already implemented solution, which intercepts all assertions:
+: Moreover, some frameworks have implemented a system based on exception interceptors: whenever an assertion fails and throws an exception, the framework executes an action (e.g. scroll down) and retries the failing assertion.
 
 : * [Avito UI test framework](https://github.com/avito-tech/avito-android/tree/develop/subprojects/android-test/ui-testing-core/src/main/kotlin/com/avito/android)
 * [Kaspresso](https://github.com/KasperskyLab/Kaspresso)
 
-: Consider using them to avoid this problem at all.
+: Consider using them to avoid issues with asynchronous operations.
 
 #### 2. Use isolated environment for each test </br>
 
-: Package clear before each test will all your data in application and process itself. This will get rid of the
-likelihood affection old data to your current test. Marathon and Avito-Test runner provide the easiest way to clear the
+: Package clear before each test will delete all your data in application and process itself. This will get rid of the
+likelihood of old data to affecting your current test. Marathon and Avito-Test runner provide the easiest way to clear the
 state.
 </br>
 
@@ -99,26 +95,26 @@ here: [State Clearing](https://android-ui-testing.github.io/Cookbook/practices/s
 
 #### 3. Test vanishing content in other way (Toasts, Snackbars, etc) </br>
 
-: Testing the content which is going to be hidden after N time (usually ms) it's also challenging. Toast might be shown
-properly, but your test framework is checking other content on the screen at the particular moment. When this check is
-done, toast might have already been disappeared, your test will be failed.
+: Testing the content which is going to be hidden after a certain time (usually ms) it's also challenging. A toast might be shown
+properly, but your test framework is checking other content on the screen at that particular moment. When this check is
+done and it is time to assert the toast, it might have already disappeared. Therefore, your test will fail.
 
-: To solve this, you may not to test it at all. Or, you can have some proxy object which saves a fact that
-Toast/SnackBar has been shown. This solution has already been implemented by Avito company, you may check the
+: One way to solve this is not to test it at all. Or, on the other hand, you can have some proxy object which remembers that the
+Toast/SnackBar has been shown. This solution has already been implemented by the company Avito, you can check the
 details [here](https://avito-tech.github.io/avito-android/test/Toast/)
 
-: If you have own designed component, which is also disappears after some time, you can disable this disparity for tests
+: If you have your own designed component, which also disappears after some time, you can disable this disparity for tests
 and close it manually.
 
 #### 4. Use special configuration for your device </br>
 
-: In the most of the cases you don't to have Accelerometer, Audio input/output, Play Store, Sensors and Gyroscope in
+: In most cases you don't need the Accelerometer, Audio input/output, Play Store, Sensors and Gyroscope in
 your tests.
 </br>
 You can see how to disable them
 here: [Emulator setup](https://android-ui-testing.github.io/Cookbook/practices/emulator_setup/)
 
-: Also, it's recommended way to disable animations on the device, screen-off timeout and long press timeout. The script
+: For more reliability, it's also recommended to disable animations on the device, screen-off timeout and long press timeout. The script
 below will patch all your devices connected to `adb`
 ```bash
   devices=$(adb devices -l | sed '1d' | sed '$d' |  awk '{print $1}')
@@ -138,9 +134,9 @@ done
 
 #### 5. Use fresh emulator instance each test batch </br>
 
-: Your tests may affect your emulator work, like save some information in the external storage, which can be a reason of
-flakiness. It's not pragmatic to run a new emulator for each test in terms of speed, however you can do it each batch.
-Just kill emulators when all of your tests finished.
+: Your tests may affect your emulator work, like saving some information in the external storage, which can be one more reason of
+flakiness. It's not pragmatic to run a new emulator for each test in terms of speed, however you can do it for each batch of tests.
+Just kill all the emulators once all of your tests finished.
 <br>
 You can see how to disable them
 here: [Emulator setup](https://android-ui-testing.github.io/Cookbook/practices/emulator_setup/)

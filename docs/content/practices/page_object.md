@@ -3,21 +3,21 @@
 How to make tests more clear and readable?
 
 ## Problem
+UI test aim to verify the state of the screen state after interacting with its views.
+For those interactions to happen, we need to find `ViewMatchers` that are unique to the views we'll interact with.
+<br/>
+Imagine that we do have hundreds of tests whose first interaction is pressing the very same button. We define its id to be the `ViewMatcher`.
+What if that button would change its id? We'd need to adapt the `ViewMatcher` of that button inside every single test.
+<br/>
+Moreover, what if our `View` requires numerous `ViewMatchers` to be uniquely identified (for example when that `View`
+is a child of `RecyclerView`, where all recyclable vies have the same id)
+<br/>
 
-There is a lot of `ViewMatchers` and so on in our tests once we need to find exact `View`.
-<br/>
-Imagine that we do have hundreds of tests that starts with pressing same button. What will be if that button would
-change its id? We would change `ViewMatcher` inside every single test.
-<br/>
-Also there is a problem if our `View` should be accessed with a lot of `ViewMatchers` used (for example when that `View`
-is a child of `RecyclerView`)
-<br/>
-
-What should we do in the above cases? May we should extract this `View` to another abstraction?
+What should we do in such cases? Should we put this `View` into another abstraction level?
 
 ## Solution: Page Object Pattern
 
-Actually that pattern came to Android world from Web testing. This is how `PageObject` determined by one of its creator:
+That pattern came to the Android world from Web testing indeed. This is how `PageObject` defined by one of its creators:
 > The basic rule of thumb for a page object is that it should allow a software client to do anything and see anything that a human can. It should also provide an interface that's easy to program to and hides the underlying widgetry in the window. So to access a text field you should have accessor methods that take and return a string, check boxes should use booleans, and buttons should be represented by action oriented method names.
 > <br/> www.martinfowler.com/bliki/PageObject.html
 
@@ -27,7 +27,7 @@ We do have some screen with 3 `Buttons`
 
 ![alt text](../images/page_object_example.png "Page object example")
 
-#### Let's write some test for that screen with plain espresso
+#### Let's write some test for that screen with plain Espresso
 
 ```kotlin
 @Test
@@ -40,9 +40,9 @@ fun testFirstFeature() {
 }
 ```
 
-That test finds one of our button then checks its visibility and after that performs usual click.
+That test finds one of our buttons, checks its visibility and after that performs a click.
 
-Main problem here — it's not easy to read.
+The main problem here — it's not easy to read.
 
 #### What do we want to achieve with PageObject?
 
@@ -56,25 +56,25 @@ fun testFirstFeature() {
 }
 ```
 
-What is the difference we can see here?
+What is the difference?
 
-* We use `ViewMatcher` inside of our test <br/>
-* We added `MainScreen` abstraction that actually is a `PageObject` of screen provided in example <br/>
-* `isVisible()` and `click()` are extensions (for example)
+* We do not use `ViewMatcher`s inside our test: they are hidden under our `PageObject` <br/>
+* We added `MainScreen` abstraction. It is the `PageObject` of the screen provided in the example <br/>
+* `isVisible()` and `click()` are implemented as Kotlin extensions (for example)
 
-As you can see that change made our code more clear and readable. And that happened even with one single test that
-checks visibility of button and clicks on it.
+As you can see, that change made our code more clear and readable. And that happened even with one single test that
+checks the visibility of a button and clicks on it.
 
-Just imagine how much effort that pattern will bring to your codebase in case of hundreds tests written
-with `PageObject`
+Just imagine how much effort that pattern will bring to your codebase in case of hundreds of tests written
+with the `PageObject`
 
 ### Instead of writing your own implementation of PageObject pattern
 
-Just take a look for [Kakao library](https://github.com/agoda-com/Kakao) it has a modern `Kotlin DSL` implementation
-of `PageObject` pattern
+Just take a look at the [Kakao library](https://github.com/agoda-com/Kakao). It has a modern `Kotlin DSL` implementation
+of the `PageObject` pattern.
 
-A lot of useful classes for interact with. <br/>
-For example, same test for our screen written with `Kakao` library will look like
+It comes with a lot of useful classes and actions for View interactions. That's why other libraries like `Kaspresso` use `Kakao` under the hood. <br/>
+For example, the same test for our screen written with `Kakao` would look like this
 
 ```kotlin
 @Test
@@ -92,6 +92,7 @@ fun testFirstFeature() {
 
 `PageObject` pattern helps us to:
 
-➕ Remove duplicates of `ViewMatchers` from tests <br/>
-➕ Once we change id/text/whatever of `View` we should change it only in one place of `PageObject` class <br/>
-➕ New abstraction to make code more readable and clear
+➕ Make the code more readable and clear<br/>
+   1. `ViewMatchers` make the code hard to read, and  all of them are now inside of the `PageObject` class.
+   2. no more `ViewMatchers` duplication among tests: all Views have their `ViewMatchers` uniquely defined in the `PageObject` class.<br/>
+➕ Once we change the id/text/whatever of the target `View` we should change it only in one place: the `PageObject` class <br/>
