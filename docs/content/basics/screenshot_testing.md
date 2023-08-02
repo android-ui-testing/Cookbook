@@ -86,6 +86,8 @@ One could also use real devices for snapshot testing, but it does not scale. Dev
 
 2. JVM
      - [Paparazzi](https://github.com/cashapp/paparazzi): Square framework
+     - [Roborazzi](https://github.com/takahirom/roborazzi): Compatible with Robolectric.
+     - [Snappy](https://github.com/QuickBirdEng/kotlin-snapshot-testing): Kotlin Multiplatform.
    
 Unlike UI tests, it is not possible to write shared tests
 
